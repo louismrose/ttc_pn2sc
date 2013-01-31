@@ -1,0 +1,19 @@
+retype Net to Statechart
+migrate Net {
+	migrated.topstate = new SC!AND;
+	migrated.topstate.contains.addAll(original.transitions.equivalent());
+}
+
+retype Place to Basic
+migrate Place {
+	var container = new SC!OR;
+	container.name = original.name.replace("P", "O");
+	container.contains.add(migrated);
+	original.cnet.equivalent().topstate.contains.add(container);
+}
+
+retype Transition to HyperEdge
+migrate Transition {
+	migrated.rnext = original.prep.equivalent();
+	migrated.next = original.postp.equivalent();
+}
