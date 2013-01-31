@@ -1,0 +1,52 @@
+operation PN!Transition neighbours_and_siblings() : Set(PN!Transition) {
+	var result = new Set;
+	result.addAll(self.neighbours());
+	result.addAll(self.siblings());	
+	return result;
+}
+
+/*
+	The neighbours of e1 is the set {e0, e2, e3}:
+
+                   /---> s2 --> e2
+	         /--> e1 
+    e0 --> s1      \---> s3 --> e3
+           |
+            \ --> e4
+
+	Note that e4 is not a neighbour of e1, as
+    navigating between e1 and e4 involves navigating
+    transitions that do not face the same way.
+*/
+operation PN!Transition neighbours() : Set(PN!Transition) {
+	var neighbours = new Set;
+	
+	neighbours.addAll(self.postp.collect(p|p.postt).flatten());
+	neighbours.addAll(self.prep.collect(p|p.pret).flatten());
+	neighbours.remove(self);
+	
+	return neighbours;
+}
+
+/*
+    The siblings of e1 is the set {e4}
+
+                   /---> s2 --> e2
+	         /--> e1 
+    e0 --> s1      \---> s3 --> e3
+           |
+            \ --> e4
+
+	Note that siblings are the opposite of neighbours:
+    they are determined by navigating a transition forwards
+    (backwards) and then navigating backwards (forwards).
+*/
+operation PN!Transition siblings() : Set(PN!Transition) {
+	var neighbours = new Set;
+	
+	neighbours.addAll(self.postp.collect(s|s.pret).flatten());
+	neighbours.addAll(self.prep.collect(s|s.postt).flatten());
+	neighbours.remove(self);
+	
+	return neighbours;
+}

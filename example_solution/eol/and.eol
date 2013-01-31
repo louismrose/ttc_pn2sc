@@ -1,0 +1,58 @@
+import "equivalence.eol";
+import "petri_net_navigation.eol";
+
+operation PN!Transition applyAndRule() : Map {
+	var forwards = self.applyAndRule(self.prep);
+	
+	if (forwards.get('a_transition_was_reduced?')) {
+		return forwards;
+	
+	} else {
+		var backwards = self.applyAndRule(self.postp);
+		return backwards;
+	}
+}
+
+/* 
+	Attempts to apply AND reduction for the specified set of states.
+	The states must be either the preset or the postset of the HyperEdge
+	on which the operation is invoked.
+*/
+operation PN!Transition applyAndRule(places : Collection(PN!Place)) : Map {
+	var result = Map{'a_transition_was_reduced?' = false, 'impacted_transitions' = Set {}, 'deleted_transition' = null};
+	
+	-- This step "is only allowed if each place in the transition's preset (postset) has the same input and output transitions."
+	
+	if (places.size() > 1 and places.forAll(p|p.has_same_transitions_as?(places.first))) {
+		("Performing AND reduction for e=" + self.name).println();
+		var parent = new SC!AND;
+		parent.name = places.collect(s|s.name).concat().replace("P", "A").replace("O", "A");
+		parent.contains.addAll(places.equivalent());
+		
+		var root = new SC!OR;
+		SC!Statechart.all.first.topstate.contains.add(root);		
+		root.name = places.collect(s|s.name).concat().replace("P", "O");
+		root.contains.add(parent);
+		
+		places.first.name = places.collect(p|p.name).concat();
+		delete places.tail();
+				
+		result.put('impacted_transitions', self.neighbours_and_siblings()); // TODO: also include self?
+		result.put('a_transition_was_reduced?', true);
+	}
+	
+	return result;
+}
+
+operation PN!Place has_same_transitions_as?(other : PN!Place) : Boolean {
+	return self.pret.size() == other.pret.size() and
+	       self.postt.size() == other.postt.size() and
+	       self.pret.forAll(e|other.pret.includes(e)) and
+	       self.postt.forAll(e|other.postt.includes(e));
+}
+
+operation Collection tail() : Collection {
+	var tailed = self.clone();
+	tailed.removeAt(0);
+	return tailed;
+}

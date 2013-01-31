@@ -1,0 +1,55 @@
+import "processable.eol";
+import "or.eol";
+import "and.eol";
+
+var current_processable_transitions = processable_transitions();
+
+while (current_processable_transitions.notEmpty()) {
+	var reduced_a_transition_this_iteration = false;
+	var reduction_result = null;
+	
+	// ANDs
+	for (processable in current_processable_transitions) {
+		reduction_result = processable.applyAndRule();
+	
+		if (reduction_result.get('a_transition_was_reduced?')) {
+			// an transition has been successfully reduced, and
+			// we need to recalculate the processable transitions
+			reduced_a_transition_this_iteration = true;
+			break;   
+		}
+	}
+	
+	// ORs
+	for (processable in current_processable_transitions) {
+		reduction_result = processable.applyAndRule();
+	
+		if (reduction_result.get('a_transition_was_reduced?')) {
+			// an transition has been successfully reduced, and
+			// we need to recalculate the processable transitions
+			reduced_a_transition_this_iteration = true;
+			break;   
+		}
+	}
+	
+	if (reduced_a_transition_this_iteration) {
+		// Update the set of processable transitions
+		current_processable_transitions = recompute_processable_transitions(current_processable_transitions, reduction_result.get('impacted_transitions'), reduction_result.get('deleted_transition'));
+	} else {
+		// No processable transition could be reduced, so fail with an error.
+		current_processable_transitions.println('ERROR: None of the following processable transitions could be reduced: ');
+		break;
+	}
+}
+
+operation Transition reduce() : Map {
+	var and_result = self.applyAndRule();
+	
+	if (and_result.get('a_transition_was_reduced?')) {
+		return and_result;
+	
+	} else {
+		var or_result = self.applyOrRule();
+		return or_result;
+	}
+}

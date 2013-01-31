@@ -1,0 +1,51 @@
+import 'petri_net_navigation.eol';
+
+operation recompute_processable_transitions(existing : Collection(Transition), impacted : Collection(Transition), deleted : Transition) : Collection(Transition) {
+	if (deleted.isDefined()) {
+		existing.remove(deleted);
+	}
+	
+	for (i in impacted) {
+		if (i.processable?()) {
+		
+			if (existing.excludes(i)) {
+				existing.add(i);
+			}
+			
+		} else {
+			existing.remove(i);
+		}
+	}
+	
+	existing.collect(t|t.name).println();
+	
+	return existing;
+}
+
+operation processable_transitions() : Collection(Transition) {
+	return Transition.all.select(e|e.processable?());
+}
+
+operation Transition processable?() : Boolean {
+	return not self.neighbours().exists(e|e.precedes?(self));
+}
+
+@cached
+operation Transition precedes?(other : Transition) : Boolean {
+	var result;
+	
+	if (self == other) {
+		result = false;
+	} else {
+		result = (self.prep.nonEmptyStrictSubsetOf?(other.postp) or self.postp.nonEmptyStrictSubsetOf?(other.prep));
+	}
+	
+	return result;
+}
+
+operation Collection nonEmptyStrictSubsetOf?(other : Collection) : Boolean {
+	if (self.isEmpty()) return false;
+
+	///    subset and not equal => strict subset
+	return other.includesAll(self) and not other.asSet().equals(self.asSet());
+}

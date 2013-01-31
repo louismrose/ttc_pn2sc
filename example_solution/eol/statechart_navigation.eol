@@ -1,0 +1,16 @@
+operation SC!State top() : SC!State {
+	if (self.has_no_parent?() or self.parent_is_topstate?()) {
+		return self;
+	
+	} else {
+		return self.rcontains.top();
+	}
+}
+
+operation SC!State has_no_parent?() : Boolean {
+	return self.rcontains.isUndefined();
+}
+
+operation SC!State parent_is_topstate?() : Boolean {
+	return self.rcontains == SC!Statechart.all.first.topstate;
+}

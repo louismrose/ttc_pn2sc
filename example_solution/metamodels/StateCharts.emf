@@ -1,0 +1,33 @@
+@namespace(uri="http://uam.es/StateCharts", prefix="schart")
+package statecharts;
+
+@gmf.diagram(foo="bar",model.extension="statechart")
+class Statechart {
+	val AND[1] topState;
+}
+
+abstract class State {
+   attr String name;
+   @gmf.link(source="src", target="trg", target.decoration="arrow", color="0,0,0")
+   ref State[*]#rnext next;
+   ref State[*]#next rnext;
+   
+   ref Compound[0..1]#contains rcontains;
+}
+@gmf.node(label="name", label.icon="false", label.readOnly="true", figure="rectangle", color="0,0,0", border.color="0,0,0", tool.name = "Hyper-edge")
+class HyperEdge extends State {}
+
+@gmf.node(label="name", label.icon="false", label.readOnly="true", figure="rounded", border.color="0,0,0", tool.name = "Basic")
+class Basic extends State {}
+
+abstract class Compound extends State {
+  @gmf.compartment(collapsible="true",layout="free")
+  val State[*]#rcontains contains;
+}
+
+@gmf.node(label="name", label.icon="false", figure="rectangle", border.color="0,0,0", tool.name = "Region", size="250,250")
+class AND extends Compound{} 
+
+@gmf.node(label="name", label.icon="false", figure="rectangle", border.color="0,0,0", border.style = "dash", tool.name = "Sub Region", size="150,150")
+/*@gmf.node(figure="figures.Rhomb",label.icon="false", label="name", label.placement="external")*/
+class OR extends Compound{}

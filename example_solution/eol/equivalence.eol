@@ -1,0 +1,24 @@
+import "statechart_navigation.eol";
+
+@cached
+operation Collection(PN!Place) equivalent() : Collection(SC!State) {
+	return self.collect(t|t.equivalent());
+}
+
+// This operation MUST not be cached because states are moved
+// to different parents as part of the PN reduction / SC construction
+// process. In other words, the result of SC#top() changes during
+// execution, and hence its result should not be cached!
+operation PN!Place equivalent() : SC!OR {
+	return self.direct_equivalent().top();
+}
+
+@cached
+operation PN!Place direct_equivalent() : SC!OR {
+	return SC!OR.all.selectOne(s|s.name == self.name.replace("P", "O"));
+}
+
+@cached
+operation PN!Transition equivalent() : SC!HyperEdge {
+	return SC!HyperEdge.all.selectOne(s|s.name == self.name);
+}

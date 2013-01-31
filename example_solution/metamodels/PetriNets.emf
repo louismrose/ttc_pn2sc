@@ -1,0 +1,29 @@
+@namespace(uri="http://uam.es/PetriNets", prefix="pnet")
+@gmf(foo="bar")
+package PetriNet;
+
+@gmf.diagram(foo="bar")
+class Net {
+  val Place[*]#cnet places;
+  val Transition[*]#cnet transitions;
+}
+
+abstract class NamedElement {
+  attr String name;
+}
+
+@gmf.node(label="name", figure="ellipse")
+class Place extends NamedElement {
+  @gmf.link(target.decoration="arrow")
+  ref Transition[*]#prep postt;
+  ref Transition[*]#postp pret;
+  ref Net[1]#places cnet;
+}
+
+@gmf.node(label="name", figure="rectangle", color="0,0,0", size="15,50", label.placement="external")
+class Transition extends NamedElement {
+  ref Place[*]#postt prep;
+  @gmf.link(target.decoration="arrow")
+  ref Place[*]#pret postp;
+  ref Net[1]#transitions cnet;
+}
