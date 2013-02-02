@@ -100,81 +100,29 @@ Abstract
 \end_layout
 
 \begin_layout Itemize
-Add a running example to the transformation section? 
+Nice healthcare example
 \end_layout
 
 \begin_layout Itemize
-Evaluation criteria 
+Describe the huge models for stresstesting
 \end_layout
 
 \begin_layout Itemize
-Break down into sub-tasks.
- A possible ordering: 
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-
-\backslash
-subitem
+Cite MODELS paper for the results of Java, GrGen, and mention that Epsilon
+ is X times slower for now.
+ 
 \end_layout
 
-\end_inset
-
- initialisation 
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-
-\backslash
-subitem
+\begin_layout Itemize
+Evaluation criteria: table
 \end_layout
 
-\end_inset
-
- transition precedence 
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-
-\backslash
-subitem
+\begin_layout Itemize
+Elaborate text for bonus features
 \end_layout
 
-\end_inset
-
- OR rules 
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-
-\backslash
-subitem
-\end_layout
-
-\end_inset
-
- AND rules 
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-
-\backslash
-subitem
-\end_layout
-
-\end_inset
-
- Put it all together 
+\begin_layout Itemize
+Create ZIP attachment with testsuite models
 \end_layout
 
 \begin_layout Section
@@ -391,6 +339,15 @@ Van Gorp et al.
  required less specification efort yet delivered superior performance.
  By submitting this case to TTC'13, we aim at analyzing the generalizability
  of that observation.
+\end_layout
+
+\begin_layout Subsection
+Input and Output Languages
+\end_layout
+
+\begin_layout Standard
+TODO: copy/paste some background about petri-nets and statecharts, also
+ cite some papers about safe nest, workflow nets.
 \end_layout
 
 \begin_layout Section
@@ -1842,8 +1799,29 @@ Testsuite and Additional Artifacts
 \begin_layout Standard
 In this section, we present some testcases that should be used both for
  some basic correctness verification as well as for performance testing.
- The complete testsuite is available in an online repository.
- Moreover, we provide online access to additional test materials and three
+ The complete testsuite is available in an online repository
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+See 
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+https://github.com/louismrose/ttc_pn2sc/
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+.
+ Moreover, we provide online access to additional test materials, three
  existing solutions to the case (a Java solution, a GrGen.NET solution and
  an Epsilon solution
 \begin_inset Foot
@@ -1867,13 +1845,97 @@ ark
 
 \end_inset
 
-).
+) and GMF-based editors with automatic layouting features.
  We will also participate in online discussions related to these materials
  and may submit also improved versions of the existing solutions.
 \end_layout
 
 \begin_layout Subsection
-Testcase 1: 
+Testcase 1: Artificial Example
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/paper-example-pn.png
+	width 60line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Testcase-1"
+
+\end_inset
+
+Testcase 1 input, diagram exported from a GMF-based Petri-Net editor.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/paper-example-sc.png
+	width 100line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Testcase-1-1"
+
+\end_inset
+
+Testcase 1 output, diagram exported from a GMF-based Statechart editor.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -1889,13 +1951,13 @@ Bonus Criteria
 \end_layout
 
 \begin_layout Standard
-- ability to formalize "safe net" class and (semi-)automatically proof that
+- ability to formalize safe net class and (semi-)automatically proof that
  reduction rules indeed terminate for that class.
 \end_layout
 
 \begin_layout Standard
 - ability to use a petri-net simulator for simulating the statechart, or
- vice versa.
+ vice versa (note: need simple Token extension to MM)
 \end_layout
 
 \begin_layout Standard
