@@ -1,0 +1,53 @@
+\lstset{escapeinside={(*@}{@*)}}
+
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\lstset{numbers=left,numbersep=3pt,numberstyle=\tiny,stringstyle={\color{gray}},basicstyle=\tiny,breaklines=true,emph={while,var,false,true,new,for,if,break,not,and,or,operation,Boolean,return, delete,self},emphstyle=\textbf,morecomment=[l][\color{gray}\textit]{//},morestring=[b]",showstringspaces=false,tabsize=2}
+\tt
+\begin{lstlisting}
+operation PN!Transition apply_and_rule() : Boolean {
+	return self.apply_and_rule(self.prep) or self.apply_and_rule(self.postp);
+}
+
+operation PN!Transition apply_and_rule(places : Collection(PN!Place)) : Boolean {
+	var result = false;
+	
+	// Check pre-conditions
+	if (places.size() > 1 and places.forAll(p|p.has_same_transitions_as?(places.first))) {
+	  
+	  // Alter statechart
+		var parent = new SC!AND;
+		parent.contains.addAll(places.equivalent());
+		
+		var root = new SC!OR;
+		get_top_state().contains.add(root);		
+		root.contains.add(parent);
+		
+		// Alter Petri net
+		delete places.tail();
+		
+		result = true;
+	}
+	
+	return result;
+}
+
+operation PN!Place has_same_transitions_as?(other : PN!Place) : Boolean {
+	return self.pret.size() == other.pret.size() and
+	       self.postt.size() == other.postt.size() and
+	       self.pret.forAll(e|other.pret.includes(e)) and
+	       self.postt.forAll(e|other.postt.includes(e));
+}
+
+operation Collection tail() : Collection {
+	var tailed = self.clone();
+	tailed.removeAt(0);
+	return tailed;
+}
+
+operation PN!Place equivalent() : SC!OR {
+	// This operation is implementation-specific.
+	// In our solution, we use the names of Places and OR
+	// nodes to implement equivalence, but other approaches
+	// are equally valid and correct.
+}
+\end{lstlisting}

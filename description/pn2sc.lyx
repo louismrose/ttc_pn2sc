@@ -1,0 +1,1302 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass eptcs
+\begin_preamble
+
+\providecommand{\event}{TTC 2013} 
+
+\def\titlerunning{Petri Nets to Statecharts}
+\def\authorrunning{P. {Van Gorp} and L.M. Rose}
+
+\usepackage{url}\usepackage{color}\usepackage{listings}
+
+
+\title{The Petri Nets to Statecharts Transformation Case}
+
+\author{Pieter Van Gorp \institute{Eindhoven University of Technology, PO Box 513, 5600 MB Eindhoven, The Netherlands.} \email{p.m.e.v.gorp@tue.nl} \and Louis M. Rose \institute{Department of Computer Science, University of York, UK.} \email{louis.rose@york.ac.uk}}
+\end_preamble
+\options submission,copyright,creativecommons
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package none
+\inputencoding auto
+\fontencoding default
+\font_roman default
+\font_sans default
+\font_typewriter courier
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 0
+\use_mathdots 0
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+maketitle
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+TODO: 
+\end_layout
+
+\begin_layout Itemize
+Abstract 
+\end_layout
+
+\begin_layout Itemize
+Add a running example to the transformation section? 
+\end_layout
+
+\begin_layout Itemize
+Evaluation criteria 
+\end_layout
+
+\begin_layout Itemize
+Break down into sub-tasks.
+ A possible ordering: 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+subitem
+\end_layout
+
+\end_inset
+
+ initialisation 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+subitem
+\end_layout
+
+\end_inset
+
+ transition precedence 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+subitem
+\end_layout
+
+\end_inset
+
+ OR rules 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+subitem
+\end_layout
+
+\end_inset
+
+ AND rules 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+subitem
+\end_layout
+
+\end_inset
+
+ Put it all together 
+\end_layout
+
+\begin_layout Section
+Introduction
+\end_layout
+
+\begin_layout Section
+The Transformation
+\end_layout
+
+\begin_layout Standard
+This section details the Petri net to state chart transformation algorithm,
+ originally described by Eshuis 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "eshuis09translating"
+
+\end_inset
+
+.
+ The transformation described below is 
+\emph on
+input-destructive
+\emph default
+ (elements of the Petri net model are removed as the transformation proceeds),
+ and uses the metamodels shown in figure
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:mms"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement tb
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+centerline{
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename images/PetriNets.pdf
+	width 45line%
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename images/StateCharts.pdf
+	width 50line%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(a) Petri net metamodel 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(b) State chart metamodel 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:mms"
+
+\end_inset
+
+The metamodels used in the PN2SC transformation.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Initialisation
+\end_layout
+
+\begin_layout Standard
+The first step in the PN2SC transformation involves creating an initial
+ structure for the state chart model.
+ In particular, the following state chart model elements are created:
+\end_layout
+
+\begin_layout Itemize
+For every 
+\family typewriter
+Place
+\family default
+ in the Petri net: 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+subitem
+\end_layout
+
+\end_inset
+
+ an instance of 
+\family typewriter
+Basic
+\family default
+, 
+\begin_inset Formula $b$
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+subitem
+\end_layout
+
+\end_inset
+
+ an instance of 
+\family typewriter
+OR
+\family default
+, 
+\begin_inset Formula $o$
+\end_inset
+
+ such that 
+\begin_inset Formula $o.contains=\{b\}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Itemize
+A single instance of 
+\family typewriter
+Statechart
+\family default
+, 
+\begin_inset Formula $s$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+A single instance of 
+\family typewriter
+AND
+\family default
+, 
+\begin_inset Formula $a$
+\end_inset
+
+ such that: 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+subitem
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Formula $s.topstate=a$
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+subitem
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Formula $\forall o:o.rcontains=a$
+\end_inset
+
+ (i.e., every instance of 
+\family typewriter
+OR
+\family default
+ is contained in 
+\begin_inset Formula $a$
+\end_inset
+
+) 
+\end_layout
+
+\begin_layout Paragraph
+Equivalence.
+\end_layout
+
+\begin_layout Standard
+Initialisation should also provide a mechanism for identifying the 
+\family typewriter
+OR
+\family default
+ node created for a particular 
+\family typewriter
+Place
+\family default
+.
+ The precise mechanism can vary over implementations.
+ One approach is to use a name-based identification (i.e., assign all 
+\family typewriter
+Places
+\family default
+ a uniquely identifying name and copy eaach 
+\family typewriter
+Place's
+\family default
+ name to its 
+\family typewriter
+OR
+\family default
+ node during initialisation.) In the remainder of this section we assume
+ that the initialisation of the transformation will construct an injective
+ function 
+\begin_inset Formula $equiv:Place\to OR$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Reduction rules
+\end_layout
+
+\begin_layout Standard
+Following initialisation, the transformation continues by applying one of
+ two types of reduction rule: AND and OR.
+ This section describes these two types of reduction rule, after briefly
+ discussing the order in which the rules should be applied.
+\end_layout
+
+\begin_layout Subsubsection
+Precedence
+\end_layout
+
+\begin_layout Standard
+Correctness of the PN2SC transformation necessitates two types of precedence
+ for the application of the AND and OR merging rules.
+ Firstly, transitions that are more deeply nested take precedence over less
+ nested transitions, as described below.
+ Secondly, AND reductions always take precedence over OR reductions.
+\end_layout
+
+\begin_layout Standard
+A (partial) ordering of transitions can be computed by using the ordering
+ constraint, 
+\begin_inset Formula $\prec$
+\end_inset
+
+, described by Eshuis 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "eshuis09translating"
+
+\end_inset
+
+.
+ For the transitions 
+\begin_inset Formula $t_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $t_{2}$
+\end_inset
+
+: 
+\begin_inset Formula $t_{1}\prec t_{2}\Rightarrow(t_{1}.prep\subset t_{2}.postp\lor t_{1}.postp\subset t_{2}.prep)$
+\end_inset
+
+, where 
+\begin_inset Formula $\subset$
+\end_inset
+
+ is used to mean a strict and non-empty subset.
+ A transition 
+\begin_inset Formula $t$
+\end_inset
+
+ can be reduced (using the AND and OR rules described below) iff there exists
+ no other transition 
+\begin_inset Formula $t'$
+\end_inset
+
+ such that 
+\begin_inset Formula $t'\prec t$
+\end_inset
+
+.
+ Figure
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:eol-precedence"
+
+\end_inset
+
+ shows an implementation of the 
+\begin_inset Formula $\prec$
+\end_inset
+
+ in the Epsilon Object Language 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "kolovos06eol"
+
+\end_inset
+
+ (a reworking and extension of OCL).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\size tiny
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+input{eolPrec.tex}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:eol-precedence"
+
+\end_inset
+
+EOL code for computing the precedence of transitions.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement tb
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+centerline{
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename images/figs-R1a.png
+	lyxscale 50
+	width 45line%
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename images/figs-R2.png
+	lyxscale 50
+	width 50line%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(a) rule for creating 
+\emph on
+AND nodes
+\emph default
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(b) rule for merging 
+\emph on
+OR nodes
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Visual-documentation-for-rules"
+
+\end_inset
+
+Visual documentation for mapping rules.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+AND rules
+\end_layout
+
+\begin_layout Standard
+The first type of reduction rule, AND (figure
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Visual-documentation-for-rules"
+
+\end_inset
+
+.a), constructs an 
+\family typewriter
+AND
+\family default
+ state for a set of 
+\family typewriter
+Places
+\family default
+ that are connected to the same incoming and outgoing 
+\family typewriter
+Transitions
+\family default
+.
+\end_layout
+
+\begin_layout Paragraph
+Pre-conditions.
+\end_layout
+
+\begin_layout Standard
+The AND rule can be applied to a 
+\family typewriter
+Transition
+\family default
+, 
+\begin_inset Formula $t$
+\end_inset
+
+, iff 
+\begin_inset Formula $\left|t.prep\right|>1$
+\end_inset
+
+ and every 
+\family typewriter
+Place
+\family default
+ in 
+\begin_inset Formula $t.prep$
+\end_inset
+
+ is connected to the same set of outgoing transitions and the same set of
+ incoming transitions.
+ Alternatively, the AND rule can be applied to a 
+\family typewriter
+Transition
+\family default
+, 
+\begin_inset Formula $t$
+\end_inset
+
+ iff 
+\begin_inset Formula $\left|t.postp\right|>1$
+\end_inset
+
+ and every 
+\family typewriter
+Place
+\family default
+ in 
+\begin_inset Formula $t.postp$
+\end_inset
+
+ is connected to the same set of outgoing transitions and the same set of
+ incoming transitions.
+\end_layout
+
+\begin_layout Paragraph
+Effect on statechart.
+\end_layout
+
+\begin_layout Standard
+Applying the AND rule results in the creation of a new 
+\family typewriter
+AND
+\family default
+ state (
+\begin_inset Formula $a$
+\end_inset
+
+) and a new 
+\family typewriter
+OR
+\family default
+ state (
+\begin_inset Formula $p$
+\end_inset
+
+) such that 
+\begin_inset Formula $p.contains={a}$
+\end_inset
+
+ and 
+\begin_inset Formula $a.contains$
+\end_inset
+
+ is the set of 
+\family typewriter
+OR
+\family default
+ states 
+\begin_inset Formula $\{q\in t.prep:equiv(q)\}$
+\end_inset
+
+; or 
+\begin_inset Formula $\{q\in t.postp:equiv(q)\}$
+\end_inset
+
+ if the rule has been applied to the transition's postset, 
+\begin_inset Formula $t.postp$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Paragraph
+Effect on Petri net.
+\end_layout
+
+\begin_layout Standard
+Applying the AND rule removes from the Petri net all but one of the 
+\family typewriter
+Places
+\family default
+ in the set 
+\begin_inset Formula $t.prep$
+\end_inset
+
+ (
+\begin_inset Formula $t.postp$
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Paragraph
+EOL Implementation.
+\end_layout
+
+\begin_layout Standard
+Figure
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:eol-merge-and"
+
+\end_inset
+
+ shows an implementation of the AND rule in EOL.
+ Note that the AND rule can be applied in 
+\begin_inset Quotes eld
+\end_inset
+
+both directions
+\begin_inset Quotes erd
+\end_inset
+
+ on line 2.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\size tiny
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+input{eolAND.tex}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:eol-merge-and"
+
+\end_inset
+
+EOL code for performing AND merges (Figure
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Visual-documentation-for-rules"
+
+\end_inset
+
+a).
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+OR rules
+\end_layout
+
+\begin_layout Standard
+The second type of reduction rule, OR (figure
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Visual-documentation-for-rules"
+
+\end_inset
+
+.b), constructs an 
+\family typewriter
+OR
+\family default
+ state for a 
+\family typewriter
+Transition
+\family default
+ that has a single preceding 
+\family typewriter
+Place
+\family default
+ and single succeeding 
+\family typewriter
+Place
+\family default
+.
+\end_layout
+
+\begin_layout Paragraph
+Pre-conditions.
+\end_layout
+
+\begin_layout Standard
+The OR rule can be applied to a 
+\family typewriter
+Transition
+\family default
+, 
+\begin_inset Formula $t$
+\end_inset
+
+, iff 
+\begin_inset Formula $(\left|t.prep\right|=1)\land(\left|t.postp\right|=1)$
+\end_inset
+
+ and there is no transition, 
+\begin_inset Formula $t'$
+\end_inset
+
+, such that 
+\begin_inset Formula $(q\in t'.prep)\land(r\in t'.prep)$
+\end_inset
+
+ or 
+\begin_inset Formula $(q\in t'.postp)\land(r\in t'.postp)$
+\end_inset
+
+ where 
+\begin_inset Formula $q$
+\end_inset
+
+ is the single place contained in 
+\begin_inset Formula $t.prep$
+\end_inset
+
+ and 
+\begin_inset Formula $r$
+\end_inset
+
+ is the single place contained in 
+\begin_inset Formula $t.postp$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Paragraph
+Effect on statechart.
+\end_layout
+
+\begin_layout Standard
+Applying the OR rule results in the creation of a new 
+\family typewriter
+OR
+\family default
+ state (
+\begin_inset Formula $p$
+\end_inset
+
+) such that 
+\begin_inset Formula $p.contains$
+\end_inset
+
+ is the set of 
+\family typewriter
+OR
+\family default
+ states 
+\begin_inset Formula $equiv(q).contains\cup equiv(r).contains$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Paragraph
+Effect on Petri net.
+\end_layout
+
+\begin_layout Standard
+Applying the OR rule removes from the Petri net the 
+\family typewriter
+Transition
+\family default
+ 
+\begin_inset Formula $t$
+\end_inset
+
+ and the 
+\family typewriter
+Places
+\family default
+ 
+\begin_inset Formula $q$
+\end_inset
+
+ and 
+\begin_inset Formula $r$
+\end_inset
+
+; and adds a new 
+\family typewriter
+Place
+\family default
+ 
+\begin_inset Formula $p$
+\end_inset
+
+ such that 
+\begin_inset Formula $p.pret=(q.pret\cup r.pret)$
+\end_inset
+
+ and 
+\begin_inset Formula $p.postt=(q.postt\cup r.postt)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Paragraph
+EOL Implementation.
+\end_layout
+
+\begin_layout Standard
+Figure
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:eol-merge-or"
+
+\end_inset
+
+ shows an implementation of the OR rule in EOL.
+ Note that this implementation re-uses 
+\begin_inset Formula $q$
+\end_inset
+
+ to form 
+\begin_inset Formula $p$
+\end_inset
+
+, rather than instantiate a new 
+\family typewriter
+Place
+\family default
+ or 
+\family typewriter
+OR
+\family default
+ state.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+input{eolOR.tex}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:eol-merge-or"
+
+\end_inset
+
+EOL code for performing OR merges (Figure
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Visual-documentation-for-rules"
+
+\end_inset
+
+b).
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Termination
+\end_layout
+
+\begin_layout Standard
+The transformation proceeds by applying AND or OR rules until no 
+\family typewriter
+Transitions
+\family default
+ remain in the Petri net (success) or until no further AND or OR rules can
+ be applied (failure).
+ The transformation might fail if the input Petri net is not well-formed.
+\end_layout
+
+\begin_layout Section
+Evaluation Criteria
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace 5mm
+\end_inset
+
+ 
+\series bold
+Acknowledgements
+\series default
+: The authors thank Prof.
+ Juan de Lara for constructing the initial versions of the Petri net and
+ state charts metamodels used in this case.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+bibfiles "pn2sc"
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+bibliographystyle{eptcs}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

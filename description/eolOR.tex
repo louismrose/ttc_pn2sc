@@ -1,0 +1,42 @@
+\lstset{escapeinside={(*@}{@*)}}
+
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\lstset{numbers=left,numbersep=3pt,numberstyle=\tiny,stringstyle={\color{gray}},basicstyle=\tiny,breaklines=true,emph={while,var,false,true,new,for,if,break,not,and,or,operation,Boolean,return, delete,self},emphstyle=\textbf,morecomment=[l][\color{gray}\textit]{//},morestring=[b]",showstringspaces=false,tabsize=2}
+\tt
+\begin{lstlisting}
+operation Transition apply_or_rule() : Boolean {
+	var result = false;
+	
+	if (self.prep.size() == 1 and self.postp.size() == 1) {
+		var q = self.prep.first;
+		var r = self.postp.first;
+	
+		if ((q == r) or not q.shares_a_transition_with?(r)) {		
+			if (q <> r) {
+			  var merger = q.equivalent();
+  			var mergee = r.equivalent();
+  			
+				// Update statechart, re-using the q state as p
+				merger.contains.addAll(mergee.contains);	
+				delete mergee;
+				
+				// Update Petri net, re-using the q place as p
+				q.pret.addAll(r.pret);
+				q.postt.addAll(r.postt);
+				delete r;
+				delete self;
+				
+				result = true;
+			}
+		}
+	}
+
+	return result;
+}
+
+operation Place shares_a_transition_with?(other : Place) : Boolean {
+	return self.pret.exists(e|e.postp.includes(other)) or 
+	       self.postt.exists(e|e.prep.includes(other));
+}
+
+\end{lstlisting}

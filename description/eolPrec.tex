@@ -1,0 +1,19 @@
+\lstset{escapeinside={(*@}{@*)}}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\lstset{numbers=left,numbersep=3pt,numberstyle=\tiny,stringstyle={\color{gray}},basicstyle=\tiny,breaklines=true,emph={while,var,false,true,new,for,if,break,not,and,or,operation,Boolean,return, delete,self},emphstyle=\textbf,morecomment=[l][\color{gray}\textit]{//},morestring=[b]",showstringspaces=false,tabsize=2}
+\tt
+\begin{lstlisting}
+operation Transition precedes?(other : Transition) : Boolean {
+	if (self == other) return false;
+	
+	return self.prep.subset?(other.postp) or
+          self.postp.subset?(other.prep));
+}
+
+operation Collection subset?(other : Collection) : Boolean {
+	if (self.isEmpty()) return false;
+
+	// (non-strict subset and not equal) => strict subset
+	return other.includesAll(self) and not other.asSet().equals(self.asSet());
+}
+\end{lstlisting}
