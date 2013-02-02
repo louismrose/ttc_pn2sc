@@ -77,7 +77,7 @@
 
 \begin_layout Standard
 \begin_inset ERT
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -179,6 +179,218 @@ subitem
 
 \begin_layout Section
 Introduction
+\end_layout
+
+\begin_layout Standard
+Although transformations are already developed for decades in various communitie
+s (such as the compiler community
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Bacon1994compilertrans"
+
+\end_inset
+
+, the program transformation community
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Feather87progtranssurv"
+
+\end_inset
+
+ and the business process management (BPM) community
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Lohmann09BPMtransSurv"
+
+\end_inset
+
+), it is relatively new to study the strengths and weaknesses from transformatio
+n approaches across community boundaries.
+ The aim of the Transformation Tool Contest (TTC) is to compare the expressivene
+ss, the usability and the performance of graph and model transformation
+ tools along a number of selected case studies.
+ A deeper understanding of the relative merits of different tool features
+ will help to further improve graph and model transformation tools and to
+ indicate open problems
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "TTC11Proceedings"
+
+\end_inset
+
+.
+ This paper proposes a case for the sixth edition of TTC (i.e., to TTC'13).
+\end_layout
+
+\begin_layout Subsection
+Context of the Case
+\end_layout
+
+\begin_layout Standard
+In BPM research and practice, transformations are usually programmed using
+ general purpose programming languages.
+ Mapping rules in BPM literature tend to be formalized using mathematical
+ set constructs whereas they tend to be documented using informal visual
+ rules and implemented in Java or another general purpose programming language.
+ In the graph and model transformation communities, special purpose languages
+ and tools are being developed to support the direct execution of such mapping
+ rules.
+ Finally, various comparative studies have been contributed to the emerging
+ field of transformation engineering (cfr.,
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Taentzer2005_ModelTransformationsbyGraphTransformationsAComparativeStudy,Varro2008_TransformationofUMLModelstoCSPACaseStudyforGraphTransformationTools,Rensink2010_Graphtransformationtoolcontest2008,Gronmo2009_ComparisonofThreeModelTransformationLanguages,Rose2009_AnAnalysisofApproachestoModelMigration,rose10comparison,vAmstel2011ATLQVTperfAnal,Tolosa2011TSMatlMeasurement"
+
+\end_inset
+
+) but too little transformation problems have been considered that are considere
+d challenging by the BPM community.
+ This paper proposes the so-called PN2SC case, related to the transformation
+ of Petri-Nets to statecharts.
+ The case relates to an active research line at Eindhoven University of
+ Technology.
+ Interestingly, much of the associated research efforts have been spent
+ on an optimization algorithm which turns out to be irrelevant when using
+ a rule-based transformation approach instead of an imperative programming
+ approach
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "VanGorp2010MoDELS"
+
+\end_inset
+
+.
+ Therefore, the case can be considered a nice showcase for demonstrating
+ to the BPM community the potential impact of results from the transformation
+ community.
+\end_layout
+
+\begin_layout Subsection
+Relevance for TTC'13
+\end_layout
+
+\begin_layout Standard
+Besides providing 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+%interesting
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+input to BPM industry and its research community, this study also covers
+ a previously unstudied type of transformation.
+ More specifically, the transformation problem under study is a process
+ model translation that raises the abstraction level.
+ Regardless of concrete language and metamodel details, this type of problem
+ has not yet been considered for the evaluation of transformation approaches.
+ 
+\end_layout
+
+\begin_layout Standard
+In the following, we briefly survey existing comparative studies related
+ to process models.
+ Varró et al.
+ studied various approaches to mapping conceptual process model in UML to
+ more technical CSP models
+\begin_inset space ~
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Varro2008_TransformationofUMLModelstoCSPACaseStudyforGraphTransformationTools"
+
+\end_inset
+
+.
+ Also, in a special issue edited by Rensink et al., various experts present
+ their solutions to a case study concerning the mapping of conceptual process
+ models in BPMN to more technical BPEL models
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Rensink2010_Graphtransformationtoolcontest2008"
+
+\end_inset
+
+.
+ Grønmo et al.
+ discuss various approaches to transforming conceptual UML models into strictly
+ structured counter-parts
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Gronmo2009_ComparisonofThreeModelTransformationLanguages"
+
+\end_inset
+
+.
+ Again, the target models are more low-level than the input models.
+ Rose et al.
+ discuss different approaches to migrating Petri-Net models
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "rose10comparison"
+
+\end_inset
+
+.
+ In that case, input models are at the same level of abstraction as output
+ models.
+ 
+\end_layout
+
+\begin_layout Standard
+Van Gorp et al.
+ have already considered the case proposed by this paper for comparing a
+ graph transformation approach to the Java-based programming approach that
+ is mainstream in the BPM domain.
+ The authors make the interesting observation that the rule-based approach
+ required less specification efort yet delivered superior performance.
+ By submitting this case to TTC'13, we aim at analyzing the generalizability
+ of that observation.
 \end_layout
 
 \begin_layout Section
@@ -1279,12 +1491,13 @@ Acknowledgements
 \begin_inset CommandInset bibtex
 LatexCommand bibtex
 bibfiles "pn2sc"
+options "plain"
 
 \end_inset
 
  
 \begin_inset ERT
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
