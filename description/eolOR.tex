@@ -24,7 +24,7 @@ operation Transition apply_or_rule() : Boolean {
 				q.pret.addAll(r.pret);
 				q.postt.addAll(r.postt);
 				delete r;
-				delete self;
+				delete self; //// TODO (PVG): move to after this conditional ?
 				
 				result = true;
 			}
