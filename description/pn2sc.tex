@@ -74,7 +74,8 @@ Correctness of the PN2SC transformation necessitates two types of precedence for
 A (partial) ordering of transitions can be computed by using the ordering constraint, $\prec$, described by Eshuis \cite{eshuis09translating}. For the transitions $t_1$ and $t_2$: $t_1 \prec t_2 \Rightarrow (t_1.prep \subset t_2.postp \lor t_1.postp \subset t_2.prep)$, where $\subset$ is used to mean a strict and non-empty subset. A transition $t$ can be reduced (using the AND and OR rules described below) iff there exists no other transition $t'$ such that $t' \prec t$. Figure~\ref{fig:eol-precedence} shows an implementation of the $\prec$ in the Epsilon Object Language \cite{kolovos06eol} (a reworking and extension of OCL).
 
 \begin{figure}
-{\tiny \lstset{escapeinside={(*@}{@*)}}
+{\tiny 
+\lstset{escapeinside={(*@}{@*)}}
 \definecolor{gray}{rgb}{0.5,0.5,0.5}
 \lstset{numbers=left,numbersep=3pt,numberstyle=\tiny,stringstyle={\color{gray}},basicstyle=\tiny,breaklines=true,emph={while,var,false,true,new,for,if,break,not,and,or,operation,Boolean,return, delete,self},emphstyle=\textbf,morecomment=[l][\color{gray}\textit]{//},morestring=[b]",showstringspaces=false,tabsize=2}
 \tt
