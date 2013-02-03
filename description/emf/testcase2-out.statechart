@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schart:Statechart xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:schart="http://uam.es/StateCharts">
+  <topState name="top">
+    <contains xsi:type="schart:OR" name="">
+      <contains xsi:type="schart:AND" xmi:id="$30" name=""  next=""  rnext="" >
+        <contains xsi:type="schart:OR" xmi:id="$36" name="">
+          <contains xmi:type="schart:Basic" xmi:id="$4B" name="received"  next=" $3E $40"  rnext=" $3F" />
+        </contains>
+        <contains xsi:type="schart:OR" xmi:id="$33" name="">
+          <contains xsi:type="schart:AND" xmi:id="$31" name=""  next=""  rnext="" >
+            <contains xsi:type="schart:OR" xmi:id="$35" name="">
+              <contains xmi:type="schart:HyperEdge" xmi:id="$3B" name="n51"  next=" $47"  rnext=" $45" />
+              <contains xmi:type="schart:Basic" xmi:id="$45" name="pollicy unchecked"  next=" $3B"  rnext=" $3F" />
+              <contains xmi:type="schart:Basic" xmi:id="$47" name="policy checked"  next=" $3D"  rnext=" $3B" />
+            </contains>
+            <contains xsi:type="schart:OR" xmi:id="$34" name="">
+              <contains xmi:type="schart:HyperEdge" xmi:id="$3C" name="n52"  next=" $46"  rnext=" $44" />
+              <contains xmi:type="schart:Basic" xmi:id="$44" name="damage unchecked"  next=" $3C"  rnext=" $3F" />
+              <contains xmi:type="schart:Basic" xmi:id="$46" name="damage checked"  next=" $3D"  rnext=" $3C" />
+            </contains>
+          </contains>
+          <contains xmi:type="schart:HyperEdge" xmi:id="$3D" name=""  next=" $43"  rnext=" $46 $47" />
+          <contains xmi:type="schart:Basic" xmi:id="$43" name=""  next=" $3E $40"  rnext=" $3D" />
+        </contains>
+      </contains>
+      <contains xmi:type="schart:HyperEdge" xmi:id="$38" name="n4D"  next=" $49"  rnext=" $4A" />
+      <contains xmi:type="schart:HyperEdge" xmi:id="$37" name="n4C"  next=" $2F"  rnext=" $42" />
+      <contains xmi:type="schart:HyperEdge" xmi:id="$39" name="n4E"  next=" $42"  rnext=" $49" />
+      <contains xmi:type="schart:HyperEdge" xmi:id="$3A" name="n4F"  next=" $42"  rnext=" $48" />
+      <contains xmi:type="schart:HyperEdge" xmi:id="$40" name="n55"  next=" $48"  rnext=" $43 $4B" />
+      <contains xmi:type="schart:HyperEdge" xmi:id="$3E" name="n53"  next=" $4A"  rnext=" $43 $4B" />
+      <contains xmi:type="schart:HyperEdge" xmi:id="$3F" name="n54"  next=" $44 $45 $4B"  rnext=" $41" />
+      <contains xmi:type="schart:Basic" xmi:id="$41" name=""  next=" $3F"  rnext="" />
+      <contains xmi:type="schart:Basic" xmi:id="$48" name="rejected"  next=" $3A"  rnext=" $40" />
+      <contains xmi:type="schart:Basic" xmi:id="$4A" name="assessed"  next=" $38"  rnext=" $3E" />
+      <contains xmi:type="schart:Basic" xmi:id="$49" name="settled"  next=" $39"  rnext=" $38" />
+      <contains xmi:type="schart:Basic" xmi:id="$42" name=""  next=" $37"  rnext=" $39 $3A" />
+      <contains xmi:type="schart:Basic" xmi:id="$2F" name="archived"  next=""  rnext=" $37" />
+    </contains>
+  </topState>
+</schart:Statechart>

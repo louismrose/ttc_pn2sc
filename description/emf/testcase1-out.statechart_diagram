@@ -11,14 +11,14 @@
             <styles xmi:type="notation:DescriptionStyle" xmi:id="_4ZMagW1YEeKmWdi_g8zdwA"/>
             <styles xmi:type="notation:FontStyle" xmi:id="_4ZMagm1YEeKmWdi_g8zdwA"/>
             <styles xmi:type="notation:FillStyle" xmi:id="_4ZMag21YEeKmWdi_g8zdwA"/>
-            <element xmi:type="schart:Basic" href="paper-example.statechart#$0"/>
+            <element xmi:type="schart:Basic" href="testcase1-out.statechart#$0"/>
             <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4ZMahG1YEeKmWdi_g8zdwA" x="10" y="430" width="40" height="40"/>
           </children>
           <children xmi:type="notation:Node" xmi:id="_4ZMahm1YEeKmWdi_g8zdwA" type="3003">
             <children xmi:type="notation:DecorationNode" xmi:id="_4ZMaim1YEeKmWdi_g8zdwA" type="5001"/>
             <styles xmi:type="notation:DescriptionStyle" xmi:id="_4ZMah21YEeKmWdi_g8zdwA"/>
             <styles xmi:type="notation:FontStyle" xmi:id="_4ZMaiG1YEeKmWdi_g8zdwA"/>
-            <element xmi:type="schart:HyperEdge" href="paper-example.statechart#$6"/>
+            <element xmi:type="schart:HyperEdge" href="testcase1-out.statechart#$6"/>
             <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4ZMaiW1YEeKmWdi_g8zdwA" x="85" y="435" width="40" height="40"/>
           </children>
           <children xmi:type="notation:Node" xmi:id="_4ZMai21YEeKmWdi_g8zdwA" type="3001">
@@ -38,14 +38,14 @@
                             <styles xmi:type="notation:DescriptionStyle" xmi:id="_4f4RYW1YEeKmWdi_g8zdwA"/>
                             <styles xmi:type="notation:FontStyle" xmi:id="_4f4RYm1YEeKmWdi_g8zdwA"/>
                             <styles xmi:type="notation:FillStyle" xmi:id="_4f4RY21YEeKmWdi_g8zdwA"/>
-                            <element xmi:type="schart:Basic" href="paper-example.statechart#$14"/>
+                            <element xmi:type="schart:Basic" href="testcase1-out.statechart#$14"/>
                             <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4f4RZG1YEeKmWdi_g8zdwA" x="20" y="30" width="40" height="40"/>
                           </children>
                           <children xmi:type="notation:Node" xmi:id="_4f4RZm1YEeKmWdi_g8zdwA" type="3003">
                             <children xmi:type="notation:DecorationNode" xmi:id="_4f4Ram1YEeKmWdi_g8zdwA" type="5001"/>
                             <styles xmi:type="notation:DescriptionStyle" xmi:id="_4f4RZ21YEeKmWdi_g8zdwA"/>
                             <styles xmi:type="notation:FontStyle" xmi:id="_4f4RaG1YEeKmWdi_g8zdwA"/>
-                            <element xmi:type="schart:HyperEdge" href="paper-example.statechart#$16"/>
+                            <element xmi:type="schart:HyperEdge" href="testcase1-out.statechart#$16"/>
                             <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4f4RaW1YEeKmWdi_g8zdwA" x="80" y="30" width="40" height="40"/>
                           </children>
                           <children xmi:type="notation:Node" xmi:id="_4f-X8G1YEeKmWdi_g8zdwA" type="3006">
@@ -53,14 +53,14 @@
                             <styles xmi:type="notation:DescriptionStyle" xmi:id="_4f-X8W1YEeKmWdi_g8zdwA"/>
                             <styles xmi:type="notation:FontStyle" xmi:id="_4f-X8m1YEeKmWdi_g8zdwA"/>
                             <styles xmi:type="notation:FillStyle" xmi:id="_4f-X821YEeKmWdi_g8zdwA"/>
-                            <element xmi:type="schart:Basic" href="paper-example.statechart#$18"/>
+                            <element xmi:type="schart:Basic" href="testcase1-out.statechart#$18"/>
                             <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4f-X9G1YEeKmWdi_g8zdwA" x="140" y="30" width="40" height="40"/>
                           </children>
                           <children xmi:type="notation:Node" xmi:id="_4f-X9m1YEeKmWdi_g8zdwA" type="3003">
                             <children xmi:type="notation:DecorationNode" xmi:id="_4f-X-m1YEeKmWdi_g8zdwA" type="5001"/>
                             <styles xmi:type="notation:DescriptionStyle" xmi:id="_4f-X921YEeKmWdi_g8zdwA"/>
                             <styles xmi:type="notation:FontStyle" xmi:id="_4f-X-G1YEeKmWdi_g8zdwA"/>
-                            <element xmi:type="schart:HyperEdge" href="paper-example.statechart#$1A"/>
+                            <element xmi:type="schart:HyperEdge" href="testcase1-out.statechart#$1A"/>
                             <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4f-X-W1YEeKmWdi_g8zdwA" x="200" y="30" width="40" height="40"/>
                           </children>
                           <children xmi:type="notation:Node" xmi:id="_4f-X-21YEeKmWdi_g8zdwA" type="3006">
@@ -68,7 +68,7 @@
                             <styles xmi:type="notation:DescriptionStyle" xmi:id="_4f-X_G1YEeKmWdi_g8zdwA"/>
                             <styles xmi:type="notation:FontStyle" xmi:id="_4f-X_W1YEeKmWdi_g8zdwA"/>
                             <styles xmi:type="notation:FillStyle" xmi:id="_4f-X_m1YEeKmWdi_g8zdwA"/>
-                            <element xmi:type="schart:Basic" href="paper-example.statechart#$1C"/>
+                            <element xmi:type="schart:Basic" href="testcase1-out.statechart#$1C"/>
                             <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4f-X_21YEeKmWdi_g8zdwA" x="260" y="30" width="40" height="40"/>
                           </children>
                         </children>
@@ -76,7 +76,7 @@
                         <styles xmi:type="notation:FontStyle" xmi:id="_4f4RUm1YEeKmWdi_g8zdwA"/>
                         <styles xmi:type="notation:FillStyle" xmi:id="_4f4RU21YEeKmWdi_g8zdwA"/>
                         <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_4f4RVG1YEeKmWdi_g8zdwA"/>
-                        <element xmi:type="schart:OR" href="paper-example.statechart#//@topState/@contains.0/@contains.2/@contains.0/@contains.0/@contains.0"/>
+                        <element xmi:type="schart:OR" href="testcase1-out.statechart#//@topState/@contains.0/@contains.2/@contains.0/@contains.0/@contains.0"/>
                         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4f4RVW1YEeKmWdi_g8zdwA" x="6" y="8" width="340" height="130"/>
                       </children>
                       <children xmi:type="notation:Node" xmi:id="_4f4RWG1YEeKmWdi_g8zdwA" type="3002">
@@ -93,7 +93,7 @@
                                     <styles xmi:type="notation:DescriptionStyle" xmi:id="_4hBg4W1YEeKmWdi_g8zdwA"/>
                                     <styles xmi:type="notation:FontStyle" xmi:id="_4hBg4m1YEeKmWdi_g8zdwA"/>
                                     <styles xmi:type="notation:FillStyle" xmi:id="_4hBg421YEeKmWdi_g8zdwA"/>
-                                    <element xmi:type="schart:Basic" href="paper-example.statechart#$11"/>
+                                    <element xmi:type="schart:Basic" href="testcase1-out.statechart#$11"/>
                                     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4hBg5G1YEeKmWdi_g8zdwA" x="20" y="30" width="40" height="40"/>
                                   </children>
                                 </children>
@@ -101,7 +101,7 @@
                                 <styles xmi:type="notation:FontStyle" xmi:id="_4hBg0m1YEeKmWdi_g8zdwA"/>
                                 <styles xmi:type="notation:FillStyle" xmi:id="_4hBg021YEeKmWdi_g8zdwA"/>
                                 <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_4hBg1G1YEeKmWdi_g8zdwA"/>
-                                <element xmi:type="schart:OR" href="paper-example.statechart#//@topState/@contains.0/@contains.2/@contains.0/@contains.0/@contains.1/@contains.0/@contains.0"/>
+                                <element xmi:type="schart:OR" href="testcase1-out.statechart#//@topState/@contains.0/@contains.2/@contains.0/@contains.0/@contains.1/@contains.0/@contains.0"/>
                                 <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4hBg1W1YEeKmWdi_g8zdwA" x="11" y="6" width="100" height="130"/>
                               </children>
                               <children xmi:type="notation:Node" xmi:id="_4hBg2G1YEeKmWdi_g8zdwA" type="3002">
@@ -112,14 +112,14 @@
                                     <styles xmi:type="notation:DescriptionStyle" xmi:id="_4hBg521YEeKmWdi_g8zdwA"/>
                                     <styles xmi:type="notation:FontStyle" xmi:id="_4hBg6G1YEeKmWdi_g8zdwA"/>
                                     <styles xmi:type="notation:FillStyle" xmi:id="_4hBg6W1YEeKmWdi_g8zdwA"/>
-                                    <element xmi:type="schart:Basic" href="paper-example.statechart#$5"/>
+                                    <element xmi:type="schart:Basic" href="testcase1-out.statechart#$5"/>
                                     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4hBg6m1YEeKmWdi_g8zdwA" x="20" y="30" width="40" height="40"/>
                                   </children>
                                   <children xmi:type="notation:Node" xmi:id="_4hBg7G1YEeKmWdi_g8zdwA" type="3003">
                                     <children xmi:type="notation:DecorationNode" xmi:id="_4hBg8G1YEeKmWdi_g8zdwA" type="5001"/>
                                     <styles xmi:type="notation:DescriptionStyle" xmi:id="_4hBg7W1YEeKmWdi_g8zdwA"/>
                                     <styles xmi:type="notation:FontStyle" xmi:id="_4hBg7m1YEeKmWdi_g8zdwA"/>
-                                    <element xmi:type="schart:HyperEdge" href="paper-example.statechart#$A"/>
+                                    <element xmi:type="schart:HyperEdge" href="testcase1-out.statechart#$A"/>
                                     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4hBg721YEeKmWdi_g8zdwA" x="80" y="30" width="40" height="40"/>
                                   </children>
                                   <children xmi:type="notation:Node" xmi:id="_4hBg8W1YEeKmWdi_g8zdwA" type="3006">
@@ -127,7 +127,7 @@
                                     <styles xmi:type="notation:DescriptionStyle" xmi:id="_4hBg8m1YEeKmWdi_g8zdwA"/>
                                     <styles xmi:type="notation:FontStyle" xmi:id="_4hBg821YEeKmWdi_g8zdwA"/>
                                     <styles xmi:type="notation:FillStyle" xmi:id="_4hBg9G1YEeKmWdi_g8zdwA"/>
-                                    <element xmi:type="schart:Basic" href="paper-example.statechart#$9"/>
+                                    <element xmi:type="schart:Basic" href="testcase1-out.statechart#$9"/>
                                     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4hBg9W1YEeKmWdi_g8zdwA" x="140" y="30" width="40" height="40"/>
                                   </children>
                                 </children>
@@ -135,7 +135,7 @@
                                 <styles xmi:type="notation:FontStyle" xmi:id="_4hBg2m1YEeKmWdi_g8zdwA"/>
                                 <styles xmi:type="notation:FillStyle" xmi:id="_4hBg221YEeKmWdi_g8zdwA"/>
                                 <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_4hBg3G1YEeKmWdi_g8zdwA"/>
-                                <element xmi:type="schart:OR" href="paper-example.statechart#//@topState/@contains.0/@contains.2/@contains.0/@contains.0/@contains.1/@contains.0/@contains.1"/>
+                                <element xmi:type="schart:OR" href="testcase1-out.statechart#//@topState/@contains.0/@contains.2/@contains.0/@contains.0/@contains.1/@contains.0/@contains.1"/>
                                 <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4hBg3W1YEeKmWdi_g8zdwA" x="10" y="145" width="220" height="130"/>
                               </children>
                             </children>
@@ -143,14 +143,14 @@
                             <styles xmi:type="notation:FontStyle" xmi:id="_4g7aMm1YEeKmWdi_g8zdwA"/>
                             <styles xmi:type="notation:FillStyle" xmi:id="_4g7aM21YEeKmWdi_g8zdwA"/>
                             <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_4g7aNG1YEeKmWdi_g8zdwA"/>
-                            <element xmi:type="schart:AND" href="paper-example.statechart#//@topState/@contains.0/@contains.2/@contains.0/@contains.0/@contains.1/@contains.0"/>
+                            <element xmi:type="schart:AND" href="testcase1-out.statechart#//@topState/@contains.0/@contains.2/@contains.0/@contains.0/@contains.1/@contains.0"/>
                             <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4g7aNW1YEeKmWdi_g8zdwA" x="5" y="10" width="280" height="321"/>
                           </children>
                           <children xmi:type="notation:Node" xmi:id="_4g7aOG1YEeKmWdi_g8zdwA" type="3003">
                             <children xmi:type="notation:DecorationNode" xmi:id="_4g7aPG1YEeKmWdi_g8zdwA" type="5001"/>
                             <styles xmi:type="notation:DescriptionStyle" xmi:id="_4g7aOW1YEeKmWdi_g8zdwA"/>
                             <styles xmi:type="notation:FontStyle" xmi:id="_4g7aOm1YEeKmWdi_g8zdwA"/>
-                            <element xmi:type="schart:HyperEdge" href="paper-example.statechart#$E"/>
+                            <element xmi:type="schart:HyperEdge" href="testcase1-out.statechart#$E"/>
                             <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4g7aO21YEeKmWdi_g8zdwA" x="300" y="185" width="40" height="40"/>
                           </children>
                           <children xmi:type="notation:Node" xmi:id="_4g7aPW1YEeKmWdi_g8zdwA" type="3006">
@@ -158,7 +158,7 @@
                             <styles xmi:type="notation:DescriptionStyle" xmi:id="_4g7aPm1YEeKmWdi_g8zdwA"/>
                             <styles xmi:type="notation:FontStyle" xmi:id="_4g7aP21YEeKmWdi_g8zdwA"/>
                             <styles xmi:type="notation:FillStyle" xmi:id="_4g7aQG1YEeKmWdi_g8zdwA"/>
-                            <element xmi:type="schart:Basic" href="paper-example.statechart#$D"/>
+                            <element xmi:type="schart:Basic" href="testcase1-out.statechart#$D"/>
                             <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4g7aQW1YEeKmWdi_g8zdwA" x="370" y="185" width="40" height="40"/>
                           </children>
                         </children>
@@ -166,7 +166,7 @@
                         <styles xmi:type="notation:FontStyle" xmi:id="_4f4RWm1YEeKmWdi_g8zdwA"/>
                         <styles xmi:type="notation:FillStyle" xmi:id="_4f4RW21YEeKmWdi_g8zdwA"/>
                         <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_4f4RXG1YEeKmWdi_g8zdwA"/>
-                        <element xmi:type="schart:OR" href="paper-example.statechart#//@topState/@contains.0/@contains.2/@contains.0/@contains.0/@contains.1"/>
+                        <element xmi:type="schart:OR" href="testcase1-out.statechart#//@topState/@contains.0/@contains.2/@contains.0/@contains.0/@contains.1"/>
                         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4f4RXW1YEeKmWdi_g8zdwA" x="5" y="150" width="441" height="381"/>
                       </children>
                     </children>
@@ -174,14 +174,14 @@
                     <styles xmi:type="notation:FontStyle" xmi:id="_4fyKsm1YEeKmWdi_g8zdwA"/>
                     <styles xmi:type="notation:FillStyle" xmi:id="_4fyKs21YEeKmWdi_g8zdwA"/>
                     <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_4fyKtG1YEeKmWdi_g8zdwA"/>
-                    <element xmi:type="schart:AND" href="paper-example.statechart#//@topState/@contains.0/@contains.2/@contains.0/@contains.0"/>
+                    <element xmi:type="schart:AND" href="testcase1-out.statechart#//@topState/@contains.0/@contains.2/@contains.0/@contains.0"/>
                     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4fyKtW1YEeKmWdi_g8zdwA" y="5" width="486" height="576"/>
                   </children>
                   <children xmi:type="notation:Node" xmi:id="_4fyKuG1YEeKmWdi_g8zdwA" type="3003">
                     <children xmi:type="notation:DecorationNode" xmi:id="_4fyKvG1YEeKmWdi_g8zdwA" type="5001"/>
                     <styles xmi:type="notation:DescriptionStyle" xmi:id="_4fyKuW1YEeKmWdi_g8zdwA"/>
                     <styles xmi:type="notation:FontStyle" xmi:id="_4fyKum1YEeKmWdi_g8zdwA"/>
-                    <element xmi:type="schart:HyperEdge" href="paper-example.statechart#$1E"/>
+                    <element xmi:type="schart:HyperEdge" href="testcase1-out.statechart#$1E"/>
                     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4fyKu21YEeKmWdi_g8zdwA" x="510" y="295" width="40" height="40"/>
                   </children>
                   <children xmi:type="notation:Node" xmi:id="_4fyKvW1YEeKmWdi_g8zdwA" type="3006">
@@ -189,14 +189,14 @@
                     <styles xmi:type="notation:DescriptionStyle" xmi:id="_4fyKvm1YEeKmWdi_g8zdwA"/>
                     <styles xmi:type="notation:FontStyle" xmi:id="_4fyKv21YEeKmWdi_g8zdwA"/>
                     <styles xmi:type="notation:FillStyle" xmi:id="_4fyKwG1YEeKmWdi_g8zdwA"/>
-                    <element xmi:type="schart:Basic" href="paper-example.statechart#$21"/>
+                    <element xmi:type="schart:Basic" href="testcase1-out.statechart#$21"/>
                     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4fyKwW1YEeKmWdi_g8zdwA" x="565" y="295" width="40" height="40"/>
                   </children>
                   <children xmi:type="notation:Node" xmi:id="_4fyKw21YEeKmWdi_g8zdwA" type="3003">
                     <children xmi:type="notation:DecorationNode" xmi:id="_4fyKx21YEeKmWdi_g8zdwA" type="5001"/>
                     <styles xmi:type="notation:DescriptionStyle" xmi:id="_4fyKxG1YEeKmWdi_g8zdwA"/>
                     <styles xmi:type="notation:FontStyle" xmi:id="_4fyKxW1YEeKmWdi_g8zdwA"/>
-                    <element xmi:type="schart:HyperEdge" href="paper-example.statechart#$23"/>
+                    <element xmi:type="schart:HyperEdge" href="testcase1-out.statechart#$23"/>
                     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4fyKxm1YEeKmWdi_g8zdwA" x="620" y="295" width="40" height="40"/>
                   </children>
                   <children xmi:type="notation:Node" xmi:id="_4fyKyG1YEeKmWdi_g8zdwA" type="3006">
@@ -204,7 +204,7 @@
                     <styles xmi:type="notation:DescriptionStyle" xmi:id="_4fyKyW1YEeKmWdi_g8zdwA"/>
                     <styles xmi:type="notation:FontStyle" xmi:id="_4fyKym1YEeKmWdi_g8zdwA"/>
                     <styles xmi:type="notation:FillStyle" xmi:id="_4fyKy21YEeKmWdi_g8zdwA"/>
-                    <element xmi:type="schart:Basic" href="paper-example.statechart#$25"/>
+                    <element xmi:type="schart:Basic" href="testcase1-out.statechart#$25"/>
                     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4fyKzG1YEeKmWdi_g8zdwA" x="675" y="295" width="40" height="40"/>
                   </children>
                 </children>
@@ -212,7 +212,7 @@
                 <styles xmi:type="notation:FontStyle" xmi:id="_4fsEEm1YEeKmWdi_g8zdwA"/>
                 <styles xmi:type="notation:FillStyle" xmi:id="_4fsEE21YEeKmWdi_g8zdwA"/>
                 <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_4fsEFG1YEeKmWdi_g8zdwA"/>
-                <element xmi:type="schart:OR" href="paper-example.statechart#//@topState/@contains.0/@contains.2/@contains.0"/>
+                <element xmi:type="schart:OR" href="testcase1-out.statechart#//@topState/@contains.0/@contains.2/@contains.0"/>
                 <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4fsEFW1YEeKmWdi_g8zdwA" x="10" y="150" width="736" height="621"/>
               </children>
               <children xmi:type="notation:Node" xmi:id="_4fsEGG1YEeKmWdi_g8zdwA" type="3002">
@@ -223,7 +223,7 @@
                     <styles xmi:type="notation:DescriptionStyle" xmi:id="_4hsPMW1YEeKmWdi_g8zdwA"/>
                     <styles xmi:type="notation:FontStyle" xmi:id="_4hsPMm1YEeKmWdi_g8zdwA"/>
                     <styles xmi:type="notation:FillStyle" xmi:id="_4hsPM21YEeKmWdi_g8zdwA"/>
-                    <element xmi:type="schart:Basic" href="paper-example.statechart#$27"/>
+                    <element xmi:type="schart:Basic" href="testcase1-out.statechart#$27"/>
                     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4hsPNG1YEeKmWdi_g8zdwA" x="20" y="30" width="40" height="40"/>
                   </children>
                 </children>
@@ -231,7 +231,7 @@
                 <styles xmi:type="notation:FontStyle" xmi:id="_4fsEGm1YEeKmWdi_g8zdwA"/>
                 <styles xmi:type="notation:FillStyle" xmi:id="_4fsEG21YEeKmWdi_g8zdwA"/>
                 <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_4fsEHG1YEeKmWdi_g8zdwA"/>
-                <element xmi:type="schart:OR" href="paper-example.statechart#//@topState/@contains.0/@contains.2/@contains.1"/>
+                <element xmi:type="schart:OR" href="testcase1-out.statechart#//@topState/@contains.0/@contains.2/@contains.1"/>
                 <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4fsEHW1YEeKmWdi_g8zdwA" x="5" y="10" width="100" height="130"/>
               </children>
             </children>
@@ -239,7 +239,7 @@
             <styles xmi:type="notation:FontStyle" xmi:id="_4ZMajW1YEeKmWdi_g8zdwA"/>
             <styles xmi:type="notation:FillStyle" xmi:id="_4ZMajm1YEeKmWdi_g8zdwA"/>
             <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_4ZMaj21YEeKmWdi_g8zdwA"/>
-            <element xmi:type="schart:AND" href="paper-example.statechart#//@topState/@contains.0/@contains.2"/>
+            <element xmi:type="schart:AND" href="testcase1-out.statechart#//@topState/@contains.0/@contains.2"/>
             <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4ZMakG1YEeKmWdi_g8zdwA" x="160" y="30" width="784" height="816"/>
           </children>
         </children>
@@ -247,7 +247,7 @@
         <styles xmi:type="notation:FontStyle" xmi:id="_4YJRom1YEeKmWdi_g8zdwA"/>
         <styles xmi:type="notation:FillStyle" xmi:id="_4YJRo21YEeKmWdi_g8zdwA"/>
         <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_4YJRpG1YEeKmWdi_g8zdwA"/>
-        <element xmi:type="schart:OR" href="paper-example.statechart#//@topState/@contains.0"/>
+        <element xmi:type="schart:OR" href="testcase1-out.statechart#//@topState/@contains.0"/>
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4YJRpW1YEeKmWdi_g8zdwA" x="20" y="30" width="976" height="901"/>
       </children>
     </children>
@@ -255,11 +255,11 @@
     <styles xmi:type="notation:FontStyle" xmi:id="_3_-pQm1YEeKmWdi_g8zdwA"/>
     <styles xmi:type="notation:FillStyle" xmi:id="_3_-pQ21YEeKmWdi_g8zdwA"/>
     <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_3_-pRG1YEeKmWdi_g8zdwA"/>
-    <element xmi:type="schart:AND" href="paper-example.statechart#//@topState"/>
+    <element xmi:type="schart:AND" href="testcase1-out.statechart#//@topState"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_3_-pRW1YEeKmWdi_g8zdwA" x="30" y="30" width="1036" height="996"/>
   </children>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_2-LOAm1YEeKmWdi_g8zdwA"/>
-  <element xmi:type="schart:Statechart" href="paper-example.statechart#$29"/>
+  <element xmi:type="schart:Statechart" href="testcase1-out.statechart#$29"/>
   <edges xmi:type="notation:Edge" xmi:id="_4jzIAG1YEeKmWdi_g8zdwA" type="4001" source="_4ZMagG1YEeKmWdi_g8zdwA" target="_4ZMahm1YEeKmWdi_g8zdwA">
     <children xmi:type="notation:DecorationNode" xmi:id="_4jzIBG1YEeKmWdi_g8zdwA" type="6001">
       <styles xmi:type="notation:DescriptionStyle" xmi:id="_4jzIBW1YEeKmWdi_g8zdwA"/>

@@ -100,25 +100,7 @@ Abstract
 \end_layout
 
 \begin_layout Itemize
-Nice healthcare example
-\end_layout
-
-\begin_layout Itemize
-Describe the huge models for stresstesting
-\end_layout
-
-\begin_layout Itemize
-Cite MODELS paper for the results of Java, GrGen, and mention that Epsilon
- is X times slower for now.
- 
-\end_layout
-
-\begin_layout Itemize
-Evaluation criteria: table
-\end_layout
-
-\begin_layout Itemize
-Elaborate text for bonus features
+Mention performance for Epsilon (can be brief)
 \end_layout
 
 \begin_layout Itemize
@@ -347,7 +329,7 @@ Input and Output Languages
 
 \begin_layout Standard
 TODO: copy/paste some background about petri-nets and statecharts, also
- cite some papers about safe nest, workflow nets.
+ cite some papers about safe nets, workflow nets.
 \end_layout
 
 \begin_layout Section
@@ -356,10 +338,14 @@ The Transformation
 
 \begin_layout Standard
 This section details the Petri-Net to statechart transformation algorithm,
- originally described by Eshuis 
+ originally described by Eshuis
+\begin_inset space ~
+\end_inset
+
+
 \begin_inset CommandInset citation
 LatexCommand cite
-key "eshuis09translating"
+key "eshuis05pn2scTechreport"
 
 \end_inset
 
@@ -1618,8 +1604,18 @@ Statechart
 .
  The transformation should apply the reduction rules as long as possible
  to the input elements.
- For input Petri-Nets in the class of safe nets, the reduction process should
- terminate with exactly one 
+ For input Petri-Nets in the class of nets defined by
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "eshuis09fm"
+
+\end_inset
+
+, the reduction process should terminate with exactly one 
 \family typewriter
 Place
 \family default
@@ -1646,8 +1642,8 @@ Compound
 \end_inset
 
 .
- For unsafe input nets, the reduction rules typically cannot produce a unique
- top-level 
+ For input nets outside that class, the reduction rules typically cannot
+ produce a unique top-level 
 \family typewriter
 AND
 \family default
@@ -1855,6 +1851,108 @@ Testcase 1: Artificial Example
 \end_layout
 
 \begin_layout Standard
+This testcase is based on the running example from a Formal Methods 2009
+ conference paper by Eshuis
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "eshuis09fm"
+
+\end_inset
+
+.
+ Some intermediate snapshots of a valid application sequence of the reduction
+ rules are described in that paper but the distinction between input and
+ output model is not as clear as in Figure
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Visualization-ANDandOR"
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Figure
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Testcase-1-pn"
+
+\end_inset
+
+ shows the input Petri-Net while Figure
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Testcase-1-out"
+
+\end_inset
+
+ shows the expected output.
+ The names of the AND and OR states are arbitrary.
+ Both figures are based on GMF-based editors so the details of the concrete
+ Petri-Net and statechart syntax can be adapted.
+ In the following, AND states are represented as rectangles with solid lines
+ while OR states are represented as rectangles with dashed lines.
+\end_layout
+
+\begin_layout Standard
+Listings
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "testcase1inXMI"
+
+\end_inset
+
+ and
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "testcase1outXMI"
+
+\end_inset
+
+ show the XMI representations of the input and expected output model for
+ this testcase.
+ Listing
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "testcase1outXMI-2"
+
+\end_inset
+
+ shows the XMI representation of the Petri-Net after application of the
+ transformation.
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
@@ -1877,7 +1975,7 @@ status open
 \begin_layout Plain Layout
 \begin_inset CommandInset label
 LatexCommand label
-name "fig:Testcase-1"
+name "fig:Testcase-1-pn"
 
 \end_inset
 
@@ -1921,11 +2019,621 @@ status open
 \begin_layout Plain Layout
 \begin_inset CommandInset label
 LatexCommand label
-name "fig:Testcase-1-1"
+name "fig:Testcase-1-out"
 
 \end_inset
 
 Testcase 1 output, diagram exported from a GMF-based Statechart editor.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\size tiny
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "emf/testcase1-in.petrinet"
+lstparams "basicstyle={\\ttfamily},breaklines=true,caption={XMI representation of the Petri-Net input model},captionpos=b,frame=tb,label={testcase1inXMI},language=xml"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\size tiny
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "emf/testcase1-out.statechart"
+lstparams "basicstyle={\\ttfamily},breaklines=true,caption={XMI representation of the output statechart model},captionpos=b,frame=tb,label={testcase1outXMI},language=xml"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\size tiny
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "emf/testcase1-out.petrinet"
+lstparams "basicstyle={\\ttfamily},breaklines=true,caption={XMI representation of the Petri-Net input model at transformatoin termintation time},captionpos=b,frame=tb,label={testcase1outXMI-2},language=xml"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Testcase 2: Insurance Claim Example
+\end_layout
+
+\begin_layout Standard
+This testcase is based on an insurance claim example from a paper at the
+ ER 2012 conference
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "EshuisVanGorp2012ER"
+
+\end_inset
+
+.
+ For that paper, PN2SC is supplemented with pre-processing rules for activity
+ diagrams with object flows.
+ Also, there are post-processing rules for removing hyper-edges and for
+ introducing initial, decision and final nodes in the statecharts.
+ These extensions are not part of the proposed TTC'13 case but we mention
+ them here for clarifying the bigger picture.
+\end_layout
+
+\begin_layout Standard
+Figure
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Testcase-2-pn"
+
+\end_inset
+
+ shows the input Petri-Net for Testcase 2 while Figure
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Testcase-2-out"
+
+\end_inset
+
+ shows the expected output.
+ Listings
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "testcase2inXMI"
+
+\end_inset
+
+ and
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "testcase2outXMI"
+
+\end_inset
+
+ show the XMI representations of the input and expected output model for
+ this testcase.
+ Similar to Testcase 1, the input Petri-Net should be completely reduced
+ to one place upon transformation termination.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/claim-in.png
+	width 100line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Testcase-2-pn"
+
+\end_inset
+
+Testcase 2 input, diagram exported from a GMF-based Petri-Net editor.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/claim-sc.png
+	width 100line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Testcase-2-out"
+
+\end_inset
+
+Testcase 2 output, diagram exported from a GMF-based Statechart editor.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\size tiny
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "emf/testcase2-in.petrinet"
+lstparams "basicstyle={\\ttfamily},breaklines=true,caption={XMI representation of the Petri-Net input model for Testcase 2},captionpos=b,frame=tb,label={testcase2inXMI},language=xml"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\size tiny
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "emf/testcase2-out.statechart"
+lstparams "basicstyle={\\ttfamily},breaklines=true,caption={XMI representation of the output statechart model for Testcase 2},captionpos=b,frame=tb,label={testcase2outXMI},language=xml"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Testcase 3: Patient Logistics Example
+\end_layout
+
+\begin_layout Standard
+This testcase is inspired by the way patients can be routed throughout a
+ hospital in the context of dermatology care.
+ For this testcase, the transformation should terminate in the aforementioned
+ failure state since the input model is not part of the class of petri-nets
+ for which the reduction rules have been designed.
+\end_layout
+
+\begin_layout Standard
+Figure
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Testcase-3-pn"
+
+\end_inset
+
+ shows the input Petri-Net for Testcase 3 while Figure
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Testcase-3-inoutFail"
+
+\end_inset
+
+ shows a possible visualization of the failed execution.
+ The top of the figure shows the statechart model that was generated so
+ far.
+ Again, OR states are represented as white boxes.
+ There are no AND states in the model, but a gray box is shown nonethless
+ to make the white boxes better visible in print.
+ The bottom of the figure shows the Petri-Net upon transformation failure.
+ The two places (ovals) without labels have been produced by successive
+ applications of the OR reduction rule.
+ The corresponding OR states can be identified at the left and in the middle
+ of the statechart.
+\end_layout
+
+\begin_layout Standard
+Listing
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "testcase3inXMI"
+
+\end_inset
+
+ shows the XMI representation of the input for this testcase.
+ Since the output is not a valid statechart model, no XMI is provided for
+ the expected output.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/skincare-in.png
+	width 100line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Testcase-3-pn"
+
+\end_inset
+
+Testcase 3 input, diagram exported from a GMF-based Petri-Net editor.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/Testcase3-inout.pdf
+	width 100line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Testcase-3-inoutFail"
+
+\end_inset
+
+Testcase 3 output, diagram exported from the GrGen.NET graph visualizer.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\size tiny
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "emf/testcase3-in.petrinet"
+lstparams "basicstyle={\\ttfamily},breaklines=true,caption={XMI representation of the Petri-Net input model for Testcase 3},captionpos=b,frame=tb,label={testcase3inXMI},language=xml"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Performance Testcases
+\end_layout
+
+\begin_layout Standard
+For performance testing, we enclose an EMF representations of the key models
+ that were used to compare the Java and GrGen.NET based solutions of the
+ aforementioned paper by Van Gorp et al.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "VanGorp2010MoDELS"
+
+\end_inset
+
+.
+ The models are based on a large Petri-Net that can be transformed successfully
+ by the reduction rules.
+ That Petri-Net has been cloned multiple times to create models of up to
+ 300 thousand elements.
+ All results from
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "VanGorp2010MoDELS"
+
+\end_inset
+
+ can be reproduced via an online virtual machine in SHARE
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "vangorp10PNtoHSCiiii"
+
+\end_inset
+
+.
+ In general, the performance of both solutions scales linearly for models
+ of normal size (requiring always less than a second.) For models with thousands
+ of elements, the GrGen.NET solution exhibits an 
+\begin_inset Formula $\bigcirc(x^{2})$
+\end_inset
+
+ time complexity.
+\end_layout
+
+\begin_layout Standard
+Figure
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:perf"
+
+\end_inset
+
+ shows the performance results from as a benchmark
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "VanGorp2010MoDELS"
+
+\end_inset
+
+.) The figure shows that for GrGen.NET, two curves are shown.
+ Both curves are based on just one transformation specification.
+ Different results were obtained by changing small engine settings: for
+ one version, the rules are applied directly while for the other version
+ the engine is instructed to first analyze the input model and generate
+ optimized execution code/parameters.
+ The analysis obviously takes time too.
+ It turned out that for models consisting of less than 10.000 elements, the
+ analysis generated too much overhead.
+ The Java solution cannot process more than about 15.000 elements, due to
+ limitations of the address space of the 32 bits Java virtual machine that
+ we have used.
+ For inputs models with more than 10.000 elements, the required processing
+ time increases significantly too.
+ For models of some hundreds of thousands of elements, the engine-provided
+ GrGen optimizations reach a speedup factor of almost two.
+\end_layout
+
+\begin_layout Standard
+We encourage case submiters to demonstrate various strategies to performance
+ tuning but point out that for the GrGen.NET solution, the transformation
+ definition (i.e., the rule specficiation) was not even optimized for performance.
+ In general, especially solutions that deliver good performance without
+ negatively affecting the specification style will be considered of high
+ quality.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename images/scalab-small-models.png
+	lyxscale 50
+	width 31line%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename images/scalab-medium-models.png
+	lyxscale 50
+	width 31line%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename images/scalab-large-models.png
+	lyxscale 50
+	width 50line%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(a)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(b)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(c)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:perf"
+
+\end_inset
+
+ Performance (execution time seconds) of Java and GrGen.NET solutions.
 \end_layout
 
 \end_inset
@@ -1946,23 +2654,116 @@ Evaluation Criteria
 Basic Criteria
 \end_layout
 
+\begin_layout Subsubsection
+Transformation Correctness
+\end_layout
+
+\begin_layout Standard
+Solutions should at least demonstrate that they have the intended behavior
+ for all testcases.
+\end_layout
+
+\begin_layout Subsubsection
+Transformation Performance
+\end_layout
+
+\begin_layout Standard
+Secondly, runtime performance will be evaluated (using the performance testcases
+).
+ An online spreadsheet will be shared via the TTC'13 forum for conveniently
+ entering and comparing performance results.
+\end_layout
+
+\begin_layout Subsubsection
+Transformation Understandability
+\end_layout
+
+\begin_layout Standard
+Peer reviews will be used to assess qualitatively the understandability
+ of all solutions.
+ We envision online reviews involving multiple rounds in order to reach
+ consensus among all participants.
+ 
+\end_layout
+
+\begin_layout Subsubsection
+Reproducibility
+\end_layout
+
+\begin_layout Standard
+Solution submitters should facilitate the online review by (1) providing
+ an appendix that lists all code, diagrams, scripts, pop-ups that are essential
+ for running the transformation, (2) publishing all artifacts to SHARE.
+ Point (1) ensures that reviewers know where to look while (2) ensures that
+ reviewers can put all artifacts in the proper perspective.
+ For (2), solution submitters are encouraged to provide on the VM desktop
+ one shortcut per testcase.
+ Ideally, clicking that shortcuts automatically demonstrates that the test
+ is passed by the solution.
+ However, this is hard since we do not offer any infrastructure for automaticall
+y analyzing whether an output EMF file is the same as the testcase-provided
+ one.
+ Solution submitters who have technology for automating the test procedure
+ are encouraged to share that via the TTC'13 forum.
+ As case proposers, we at least offer the aforementioned GMF editors with
+ an automatic layouting feature for the effective human-based analysis of
+ the generated output models.
+\end_layout
+
 \begin_layout Subsection
 Bonus Criteria
 \end_layout
 
-\begin_layout Standard
-- ability to formalize safe net class and (semi-)automatically proof that
- reduction rules indeed terminate for that class.
+\begin_layout Subsubsection
+Formalization of the class of supported Input Petri-Nets
 \end_layout
 
 \begin_layout Standard
-- ability to use a petri-net simulator for simulating the statechart, or
- vice versa (note: need simple Token extension to MM)
+Solution submitters who have technologies to formalize the class of Petri-Nets
+ supported by the reduction rules are encouraged to demonstrate how such
+ technologies should be used effectively.
+ Eshuis has already defined the class of supported nets mathematically but
+ a computer-supported, formal, link between the definition of that class
+ and the definition of the reduction rules is missing.
+\end_layout
+
+\begin_layout Subsubsection
+Simulation Support
 \end_layout
 
 \begin_layout Standard
-- rule extension: modular extension to rules for dealing with cross-synchronizat
-ion
+Solution submitters are also encouraged to demonstrate features related
+ to the execution of the Petri-Nets and their corresponding statecharts.
+ Note however that execution of the models in isolation is not considered
+ relevant to this case.
+ Instead, we are interested in tools that facilitate for example the simulation
+ of statecharts based on a rule-based Petri-Net simulator (or vice versa).
+\end_layout
+
+\begin_layout Subsubsection
+Transformation Language support for Change Propagation
+\end_layout
+
+\begin_layout Standard
+We are interested in typical scenario's of change propagation (automatically
+ creating/updating/deleting output model elements when performing updates
+ on a previously transformed input model).
+ To the best of our knowledge, most graph and transformation languages do
+ not yet offer built-in support for this so experts are encouraged to show
+ their unique features for this use case.
+\end_layout
+
+\begin_layout Subsubsection
+Transformation Language support for Reversing Transformation
+\end_layout
+
+\begin_layout Standard
+Previous editions of the TTC did not yet attract convincing solutions based
+ on languages with support for bidirectional transformations.
+ We consider the PN2SC a particularly challenging case for such languages
+ since the reduction rules are input-destructive.
+ Therefore, we especially encourage experts in such languages to check whether
+ they can solve the case and also report potentially negative results.
 \end_layout
 
 \begin_layout Section
@@ -1970,13 +2771,7 @@ Format for Presenting Evaluation Results
 \end_layout
 
 \begin_layout Standard
-Table
-\begin_inset space ~
-\end_inset
-
-XXX provides an overview of key characteristics of the three existing solutions
- to the case.
- TODO: explain why these aspects, TODO: add performance results
+(TODO: PVG is too tired to finish this today and has to lecture tomorrow...)
 \end_layout
 
 \begin_layout Standard
