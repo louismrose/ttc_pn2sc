@@ -146,8 +146,8 @@ key "Lohmann09BPMtransSurv"
 
 \end_inset
 
-), it is relatively new to study the strengths and weaknesses from transformatio
-n approaches across community boundaries.
+), it is relatively new to study the strengths and weaknesses of transformation
+ approaches across community boundaries.
  The aim of the Transformation Tool Contest (TTC) is to compare the expressivene
 ss, the usability and the performance of graph and model transformation
  tools along a number of selected case studies.
@@ -318,7 +318,7 @@ Van Gorp et al.
  graph transformation approach to the Java-based programming approach that
  is mainstream in the BPM domain.
  The authors make the interesting observation that the rule-based approach
- required less specification efort yet delivered superior performance.
+ required less specification effort yet delivered superior performance.
  By submitting this case to TTC'13, we aim at analyzing the generalizability
  of that observation.
 \end_layout
@@ -337,6 +337,12 @@ The Transformation
 \end_layout
 
 \begin_layout Standard
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:TheTransfo"
+
+\end_inset
+
 This section details the Petri-Net to statechart transformation algorithm,
  originally described by Eshuis
 \begin_inset space ~
@@ -367,6 +373,12 @@ reference "fig:mms"
 \end_inset
 
 .
+ Variants of the rules can be designed such that the input model is not
+ destroyed.
+ However, in order to make all solutions comparable at the level of languages
+ and tools, discourage unnecessary variations at the solution design level.
+ In general, we encourage solution submitters to stick as closely as possible
+ to the conceptual requirements, as described in the following.
 \end_layout
 
 \begin_layout Standard
@@ -2672,6 +2684,8 @@ Secondly, runtime performance will be evaluated (using the performance testcases
 ).
  An online spreadsheet will be shared via the TTC'13 forum for conveniently
  entering and comparing performance results.
+ Solution submitters are also encouraged to reflect on the good (or poor)
+ performance of their solution, compared to solutions from TTC'13 competitors.
 \end_layout
 
 \begin_layout Subsubsection
@@ -2715,16 +2729,95 @@ Bonus Criteria
 \end_layout
 
 \begin_layout Subsubsection
-Formalization of the class of supported Input Petri-Nets
+Verification Support
 \end_layout
 
 \begin_layout Standard
 Solution submitters who have technologies to formalize the class of Petri-Nets
  supported by the reduction rules are encouraged to demonstrate how such
  technologies should be used effectively.
- Eshuis has already defined the class of supported nets mathematically but
- a computer-supported, formal, link between the definition of that class
+ Eshuis has already defined the class of supported nets mathematically
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "eshuis09fm"
+
+\end_inset
+
+, but a computer-supported, formal link between the definition of that class
  and the definition of the reduction rules is missing.
+ Once the definition of the class of supported input models is linked formally
+ to the transformation rules of a solution, it becomes interesting to reason
+ about properties that are satisfied by the set of rules.
+ For example, it would be interesting to have automated analysis features
+ for verifying whether or not the rules terminate for the complete class
+ defined by Eshuis
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "eshuis09fm"
+
+\end_inset
+
+.
+ Similarly, an automated confluence analysis of the rules set would be highly
+ valuable too.
+ It is important that such analyses are applied to classes of input models
+ rather than just to individual inputs.
+ Once automated support for verifying the termination and confluence of
+ a rule set is in place, one can more efficiently experiment with variations
+ to the reduction rules.
+ Finally, note that it would also be useful to reverse the direction of
+ the formal analysis: if it turns out that given a formally defined class
+ of input models 
+\begin_inset Formula $c$
+\end_inset
+
+, properties 
+\begin_inset Formula $P$
+\end_inset
+
+ (e.g., termination and confluence) are 
+\emph on
+not
+\emph default
+ satisfied for a set of rules 
+\begin_inset Formula $R$
+\end_inset
+
+, it would be useful to learn for which subclasses 
+\begin_inset Formula $S$
+\end_inset
+
+ of 
+\begin_inset Formula $c$
+\end_inset
+
+ the properties 
+\begin_inset Formula $P$
+\end_inset
+
+ would be satisfied nonetheless.
+ With the latter type of support in place, it would be interesting to compare
+ the ``reverse engineered" formal definition of a maximal subclass against
+ the ``manually formalized" class of supported nets that is described in
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "eshuis09fm"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Subsubsection
@@ -2754,16 +2847,48 @@ We are interested in typical scenario's of change propagation (automatically
 \end_layout
 
 \begin_layout Subsubsection
-Transformation Language support for Reversing Transformation
+Transformation Language support for Reversing the Transformation
 \end_layout
 
 \begin_layout Standard
 Previous editions of the TTC did not yet attract convincing solutions based
  on languages with support for bidirectional transformations.
- We consider the PN2SC a particularly challenging case for such languages
- since the reduction rules are input-destructive.
+ We consider PN2SC a particularly challenging case for such languages since
+ the reduction rules are input-destructive.
  Therefore, we especially encourage experts in such languages to check whether
- they can solve the case and also report potentially negative results.
+ they can solve the case and also report potentially any negative results.
+\end_layout
+
+\begin_layout Subsubsection
+Transformation Tool support for Debugging
+\end_layout
+
+\begin_layout Standard
+For validation, specialized debuggers tend to offer features for visualizing
+ (input, intermediate and output) models, ideally in the syntax of the correspon
+ding input or output language.
+ Breakpoints can typically be set at the rule level but more fine-grained
+ control can be provided too.
+ Solution submitters are encouraged to document at which level their transformat
+ion tool supports breakpoint definition.
+ Also, they are encouraged to document any features they may have employed
+ for turning a generic model/graph/object debugger into a Petri-Net and/or
+ statechart-specific debugger.
+\end_layout
+
+\begin_layout Subsubsection
+Transformation Tool support for Refactoring
+\end_layout
+
+\begin_layout Standard
+Since transformation definitions have to evolve, automated restructuring
+ (refactoring) operations are very relevant but very little transformation
+ tools provide them at the time of writing.
+ This may hinder their adoption compared to general purpose programming
+ languages.
+ Therefore, solution submitters are also encouraged to document any support
+ their tool suite offers for the systematic restructuring of transformation
+ definitions.
 \end_layout
 
 \begin_layout Section
