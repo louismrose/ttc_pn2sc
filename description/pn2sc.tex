@@ -3,8 +3,10 @@
 \documentclass[submission,copyright,creativecommons]{eptcs}
 \usepackage{courier}
 \usepackage[latin9]{inputenc}
+\usepackage{listings}
 \setcounter{secnumdepth}{3}
 \setcounter{tocdepth}{3}
+\usepackage{rotating}
 \usepackage{url}
 \usepackage{graphicx}
 
@@ -33,17 +35,16 @@
 \begin{document}
 \maketitle
 
-TODO: 
-\begin{itemize}
-\item Abstract 
-\item Nice healthcare example
-\item Describe the huge models for stresstesting
-\item Cite MODELS paper for the results of Java, GrGen, and mention that
-Epsilon is X times slower for now. 
-\item Evaluation criteria: table
-\item Elaborate text for bonus features
-\item Create ZIP attachment with testsuite models
-\end{itemize}
+This paper describes a case study for the sixth Transformation Tool
+Contest. The case is based on a mapping from Petri-Nets to statecharts
+(i.e., from flat process models to hierarchical ones). The case description
+separates a simple mapping phase from a phase that involves the step
+by step destruction Petri-Net elements and the corresponding construction
+of a hierarchy of statechart elements. Although the focus of this
+case study is on the comparison of the runtime performance of solutions,
+we also include correctness tests as well as bonus criteria for evaluating
+transformation language and tool features. 
+
 
 \section{Introduction}
 
@@ -51,7 +52,7 @@ Although transformations are already developed for decades in various
 communities (such as the compiler community~\cite{Bacon1994compilertrans},
 the program transformation community~\cite{Feather87progtranssurv}
 and the business process management (BPM) community~\cite{Lohmann09BPMtransSurv}),
-it is relatively new to study the strengths and weaknesses from transformation
+it is relatively new to study the strengths and weaknesses of transformation
 approaches across community boundaries. The aim of the Transformation
 Tool Contest (TTC) is to compare the expressiveness, the usability
 and the performance of graph and model transformation tools along
@@ -113,24 +114,24 @@ Van Gorp et al. have already considered the case proposed by this
 paper for comparing a graph transformation approach to the Java-based
 programming approach that is mainstream in the BPM domain. The authors
 make the interesting observation that the rule-based approach required
-less specification efort yet delivered superior performance. By submitting
+less specification effort yet delivered superior performance. By submitting
 this case to TTC'13, we aim at analyzing the generalizability of that
 observation.
 
 
-\subsection{Input and Output Languages}
-
-TODO: copy/paste some background about petri-nets and statecharts,
-also cite some papers about safe nest, workflow nets.
-
-
 \section{The Transformation}
 
-This section details the Petri-Net to statechart transformation algorithm,
-originally described by Eshuis \cite{eshuis09translating}. The transformation
-described below is \emph{input-destructive} (elements of the Petri-Net
-model are removed as the transformation proceeds), and uses the metamodels
-shown in figure~\ref{fig:mms}.
+\label{sec:TheTransfo}This section details the Petri-Net to statechart
+transformation algorithm, originally described by Eshuis~\cite{eshuis05pn2scTechreport}.
+The transformation described below is \emph{input-destructive} (elements
+of the Petri-Net model are removed as the transformation proceeds),
+and uses the metamodels shown in figure~\ref{fig:mms}. Variants
+of the rules can be designed such that the input model is not destroyed.
+However, in order to make all solutions comparable at the level of
+languages and tools, discourage unnecessary variations at the solution
+design level. In general, we encourage solution submitters to stick
+as closely as possible to the conceptual requirements, as described
+in the following.
 
 \begin{figure}[tb]
 \centerline{ %
@@ -308,16 +309,17 @@ rather than instantiate a new \texttt{Place} or \texttt{OR} state.
 The output model should contain a single instance of \texttt{Statechart}
 $sc$. The transformation should apply the reduction rules as long
 as possible to the input elements. For input Petri-Nets in the class
-of safe nets, the reduction process should terminate with exactly
-one \texttt{Place} left. The equivalent \texttt{AND} state $st$ should
-not have any parent \texttt{Compound} state. Moverover, $sc.topState=st$
-should hold for $sc$. For unsafe input nets, the reduction rules
-typically cannot produce a unique top-level \texttt{AND} state so
-it is impossible to produce a model that conforms strictly to the
-output model. However, in that case the transformation should terminate
-in a state that can only be reached after sequentially applying the
-reduction rules as long as possible. It should be possible to inspect
-the resulting state of the input Petri-Net for further analysis purposes.
+of nets defined by~\cite{eshuis09fm}, the reduction process should
+terminate with exactly one \texttt{Place} left. The equivalent \texttt{AND}
+state $st$ should not have any parent \texttt{Compound} state. Moverover,
+$sc.topState=st$ should hold for $sc$. For input nets outside that
+class, the reduction rules typically cannot produce a unique top-level
+\texttt{AND} state so it is impossible to produce a model that conforms
+strictly to the output model. However, in that case the transformation
+should terminate in a state that can only be reached after sequentially
+applying the reduction rules as long as possible. It should be possible
+to inspect the resulting state of the input Petri-Net for further
+analysis purposes.
 
 
 \section{Example Transformation Execution Trace}
@@ -378,13 +380,31 @@ and may submit also improved versions of the existing solutions.
 
 \subsection{Testcase 1: Artificial Example}
 
+This testcase is based on the running example from a Formal Methods
+2009 conference paper by Eshuis~\cite{eshuis09fm}. Some intermediate
+snapshots of a valid application sequence of the reduction rules are
+described in that paper but the distinction between input and output
+model is not as clear as in Figure~\ref{fig:Visualization-ANDandOR}. 
+
+Figure~\ref{fig:Testcase-1-pn} shows the input Petri-Net while Figure~\ref{fig:Testcase-1-out}
+shows the expected output. The names of the AND and OR states are
+arbitrary. Both figures are based on GMF-based editors so the details
+of the concrete Petri-Net and statechart syntax can be adapted. In
+the following, AND states are represented as rectangles with solid
+lines while OR states are represented as rectangles with dashed lines.
+
+Listings~\ref{testcase1inXMI} and~\ref{testcase1outXMI} show the
+XMI representations of the input and expected output model for this
+testcase. Listing~\ref{testcase1outXMI-2} shows the XMI representation
+of the Petri-Net after application of the transformation.
+
 \begin{figure}
 \begin{centering}
 \includegraphics[width=0.6\linewidth]{images/paper-example-pn}
 \par\end{centering}
 
-\caption{\label{fig:Testcase-1}Testcase 1 input, diagram exported from a GMF-based
-Petri-Net editor.}
+\caption{\label{fig:Testcase-1-pn}Testcase 1 input, diagram exported from
+a GMF-based Petri-Net editor.}
 
 
 \end{figure}
@@ -395,8 +415,154 @@ Petri-Net editor.}
 \includegraphics[width=1\linewidth]{images/paper-example-sc}
 \par\end{centering}
 
-\caption{\label{fig:Testcase-1-1}Testcase 1 output, diagram exported from
+\caption{\label{fig:Testcase-1-out}Testcase 1 output, diagram exported from
 a GMF-based Statechart editor.}
+\end{figure}
+
+
+{\tiny \lstinputlisting[basicstyle={\ttfamily},breaklines=true,caption={XMI representation of the Petri-Net input model},captionpos=b,frame=tb,label={testcase1inXMI},language=xml]{emf/testcase1-in.petrinet}}{\tiny \par}
+
+{\tiny \lstinputlisting[basicstyle={\ttfamily},breaklines=true,caption={XMI representation of the output statechart model},captionpos=b,frame=tb,label={testcase1outXMI},language=xml]{emf/testcase1-out.statechart}}{\tiny \par}
+
+{\tiny \lstinputlisting[basicstyle={\ttfamily},breaklines=true,caption={XMI representation of the Petri-Net input model at transformatoin termintation time},captionpos=b,frame=tb,label={testcase1outXMI-2},language=xml]{emf/testcase1-out.petrinet}}{\tiny \par}
+
+
+\subsection{Testcase 2: Insurance Claim Example}
+
+This testcase is based on an insurance claim example from a paper
+at the ER 2012 conference~\cite{EshuisVanGorp2012ER}. For that paper,
+PN2SC is supplemented with pre-processing rules for activity diagrams
+with object flows. Also, there are post-processing rules for removing
+hyper-edges and for introducing initial, decision and final nodes
+in the statecharts. These extensions are not part of the proposed
+TTC'13 case but we mention them here for clarifying the bigger picture.
+
+Figure~\ref{fig:Testcase-2-pn} shows the input Petri-Net for Testcase
+2 while Figure~\ref{fig:Testcase-2-out} shows the expected output.
+Listings~\ref{testcase2inXMI} and~\ref{testcase2outXMI} show the
+XMI representations of the input and expected output model for this
+testcase. Similar to Testcase 1, the input Petri-Net should be completely
+reduced to one place upon transformation termination.
+
+\begin{figure}
+\begin{centering}
+\includegraphics[width=1\linewidth]{images/claim-in}
+\par\end{centering}
+
+\caption{\label{fig:Testcase-2-pn}Testcase 2 input, diagram exported from
+a GMF-based Petri-Net editor.}
+\end{figure}
+
+
+\begin{figure}
+\begin{centering}
+\includegraphics[width=1\linewidth]{images/claim-sc}
+\par\end{centering}
+
+\caption{\label{fig:Testcase-2-out}Testcase 2 output, diagram exported from
+a GMF-based Statechart editor.}
+\end{figure}
+
+
+{\tiny \lstinputlisting[basicstyle={\ttfamily},breaklines=true,caption={XMI representation of the Petri-Net input model for Testcase 2},captionpos=b,frame=tb,label={testcase2inXMI},language=xml]{emf/testcase2-in.petrinet}}{\tiny \par}
+
+{\tiny \lstinputlisting[basicstyle={\ttfamily},breaklines=true,caption={XMI representation of the output statechart model for Testcase 2},captionpos=b,frame=tb,label={testcase2outXMI},language=xml]{emf/testcase2-out.statechart}}{\tiny \par}
+
+
+\subsection{Testcase 3: Patient Logistics Example}
+
+This testcase is inspired by the way patients can be routed throughout
+a hospital in the context of dermatology care. For this testcase,
+the transformation should terminate in the aforementioned failure
+state since the input model is not part of the class of petri-nets
+for which the reduction rules have been designed.
+
+Figure~\ref{fig:Testcase-3-pn} shows the input Petri-Net for Testcase
+3 while Figure~\ref{fig:Testcase-3-inoutFail} shows a possible visualization
+of the failed execution. The top of the figure shows the statechart
+model that was generated so far. Again, OR states are represented
+as white boxes. There are no AND states in the model, but a gray box
+is shown nonethless to make the white boxes better visible in print.
+The bottom of the figure shows the Petri-Net upon transformation failure.
+The two places (ovals) without labels have been produced by successive
+applications of the OR reduction rule. The corresponding OR states
+can be identified at the left and in the middle of the statechart.
+
+Listing~\ref{testcase3inXMI} shows the XMI representation of the
+input for this testcase. Since the output is not a valid statechart
+model, no XMI is provided for the expected output.
+
+\begin{figure}
+\begin{centering}
+\includegraphics[width=1\linewidth]{images/skincare-in}
+\par\end{centering}
+
+\caption{\label{fig:Testcase-3-pn}Testcase 3 input, diagram exported from
+a GMF-based Petri-Net editor.}
+\end{figure}
+
+
+\begin{figure}
+\begin{centering}
+\includegraphics[width=1\linewidth]{images/Testcase3-inout}
+\par\end{centering}
+
+\caption{\label{fig:Testcase-3-inoutFail}Testcase 3 output, diagram exported
+from the GrGen.NET graph visualizer.}
+\end{figure}
+
+
+{\tiny \lstinputlisting[basicstyle={\ttfamily},breaklines=true,caption={XMI representation of the Petri-Net input model for Testcase 3},captionpos=b,frame=tb,label={testcase3inXMI},language=xml]{emf/testcase3-in.petrinet}}{\tiny \par}
+
+
+\subsection{Performance Testcases}
+
+For performance testing, we enclose an EMF representations of the
+key models that were used to compare the Java and GrGen.NET based
+solutions of the aforementioned paper by Van Gorp et al.~\cite{VanGorp2010MoDELS}.
+The models are based on a large Petri-Net that can be transformed
+successfully by the reduction rules. That Petri-Net has been cloned
+multiple times to create models of up to 300 thousand elements. All
+results from~\cite{VanGorp2010MoDELS} can be reproduced via an online
+virtual machine in SHARE~\cite{vangorp10PNtoHSCiiii}. In general,
+the performance of both solutions scales linearly for models of normal
+size (requiring always less than a second.) For models with thousands
+of elements, the GrGen.NET solution exhibits an $\bigcirc(x^{2})$
+time complexity.
+
+Figure~\ref{fig:perf} shows the performance results from as a benchmark~\cite{VanGorp2010MoDELS}.)
+The figure shows that for GrGen.NET, two curves are shown. Both curves
+are based on just one transformation specification. Different results
+were obtained by changing small engine settings: for one version,
+the rules are applied directly while for the other version the engine
+is instructed to first analyze the input model and generate optimized
+execution code/parameters. The analysis obviously takes time too.
+It turned out that for models consisting of less than 10.000 elements,
+the analysis generated too much overhead. The Java solution cannot
+process more than about 15.000 elements, due to limitations of the
+address space of the 32 bits Java virtual machine that we have used.
+For inputs models with more than 10.000 elements, the required processing
+time increases significantly too. For models of some hundreds of thousands
+of elements, the engine-provided GrGen optimizations reach a speedup
+factor of almost two.
+
+We encourage case submiters to demonstrate various strategies to performance
+tuning but point out that for the GrGen.NET solution, the transformation
+definition (i.e., the rule specficiation) was not even optimized for
+performance. In general, especially solutions that deliver good performance
+without negatively affecting the specification style will be considered
+of high quality.
+
+\begin{figure}
+\begin{centering}
+\begin{tabular}{c|c|c}
+\includegraphics[width=0.31\linewidth]{images/scalab-small-models} & \includegraphics[width=0.31\linewidth]{images/scalab-medium-models} & \includegraphics[width=0.31\linewidth]{images/scalab-large-models}\tabularnewline
+\multicolumn{1}{c}{(a)} & \multicolumn{1}{c}{(b)} & (c)\tabularnewline
+\end{tabular}
+\par\end{centering}
+
+\centering{}\caption{\label{fig:perf} Performance (execution time seconds) of Java and
+GrGen.NET solutions.}
 \end{figure}
 
 
@@ -407,22 +573,189 @@ a GMF-based Statechart editor.}
 \subsection{Basic Criteria}
 
 
+\subsubsection{Transformation Correctness}
+
+Solutions should at least demonstrate that they have the intended
+behavior for all testcases.
+
+
+\subsubsection{Transformation Performance}
+
+Secondly, runtime performance will be evaluated (using the performance
+testcases). An online spreadsheet will be shared via the TTC'13 forum
+for conveniently entering and comparing performance results. Solution
+submitters are also encouraged to reflect on the good (or poor) performance
+of their solution, compared to solutions from TTC'13 competitors.
+
+
+\subsubsection{Transformation Understandability}
+
+Peer reviews will be used to assess qualitatively the understandability
+of all solutions. We envision online reviews involving multiple rounds
+in order to reach consensus among all participants. 
+
+
+\subsubsection{Reproducibility}
+
+Solution submitters should facilitate the online review by (1) providing
+an appendix that lists all code, diagrams, scripts, pop-ups that are
+essential for running the transformation, (2) publishing all artifacts
+to SHARE. Point (1) ensures that reviewers know where to look while
+(2) ensures that reviewers can put all artifacts in the proper perspective.
+For (2), solution submitters are encouraged to provide on the VM desktop
+one shortcut per testcase. Ideally, clicking such a shortcut automatically
+demonstrates that the test is passed by the solution. However, this
+is hard since we do not offer any infrastructure for automatically
+analyzing whether an output EMF file is the same as the testcase-provided
+one. Solution submitters who have technology for automating the test
+procedure are encouraged to share that via the TTC'13 forum. As case
+proposers, we at least offer the aforementioned GMF editors with an
+automatic layouting feature for the effective human-based analysis
+of the generated output models.
+
+
 \subsection{Bonus Criteria}
 
-- ability to formalize safe net class and (semi-)automatically proof
-that reduction rules indeed terminate for that class.
 
-- ability to use a petri-net simulator for simulating the statechart,
-or vice versa (note: need simple Token extension to MM)
+\subsubsection{Verification Support}
 
-- rule extension: modular extension to rules for dealing with cross-synchronization
+Solution submitters who have technologies to formalize the class of
+Petri-Nets supported by the reduction rules are encouraged to demonstrate
+how such technologies should be used effectively. Eshuis has already
+defined the class of supported nets mathematically~\cite{eshuis09fm},
+but a computer-supported, formal link between the definition of that
+class and the definition of the reduction rules is missing. Once the
+definition of the class of supported input models is linked formally
+to the transformation rules of a solution, it becomes interesting
+to reason about properties that are satisfied by the set of rules.
+For example, it would be interesting to have automated analysis features
+for verifying whether or not the rules terminate for the complete
+class defined by Eshuis~\cite{eshuis09fm}. Similarly, an automated
+confluence analysis of the rules set would be highly valuable too.
+It is important that such analyses are applied to classes of input
+models rather than just to individual inputs. Once automated support
+for verifying the termination and confluence of a rule set is in place,
+one can more efficiently experiment with variations to the reduction
+rules. Finally, note that it would also be useful to reverse the direction
+of the formal analysis: if it turns out that given a formally defined
+class of input models $c$, properties $P$ (e.g., termination and
+confluence) are \emph{not} satisfied for a set of rules $R$, it would
+be useful to learn for which subclasses $S$ of $c$ the properties
+$P$ would be satisfied nonetheless. With the latter type of support
+in place, it would be interesting to compare the ``reverse engineered''
+formal definition of a maximal subclass against the ``manually formalized''
+class of supported nets that is described in~\cite{eshuis09fm}.
 
 
-\section{Format for Presenting Evaluation Results}
+\subsubsection{Simulation Support}
 
-Table~XXX provides an overview of key characteristics of the three
-existing solutions to the case. TODO: explain why these aspects, TODO:
-add performance results
+Solution submitters are also encouraged to demonstrate features related
+to the execution of the Petri-Nets and their corresponding statecharts.
+Note however that execution of the models in isolation is not considered
+relevant to this case. Instead, we are interested in tools that facilitate
+for example the simulation of statecharts based on a rule-based Petri-Net
+simulator (or vice versa).
+
+
+\subsubsection{Transformation Language support for Change Propagation}
+
+We are interested in typical scenario's of change propagation (automatically
+creating/updating/deleting output model elements when performing updates
+on a previously transformed input model). To the best of our knowledge,
+most graph and transformation languages do not yet offer built-in
+support for this so experts are encouraged to show their unique features
+for this use case.
+
+
+\subsubsection{Transformation Language support for Reversing the Transformation}
+
+Previous editions of the TTC did not yet attract convincing solutions
+based on languages with support for bidirectional transformations.
+We consider PN2SC a particularly challenging case for such languages
+since the reduction rules are input-destructive. Therefore, we especially
+encourage experts in such languages to check whether they can solve
+the case and also report potentially any negative results.
+
+
+\subsubsection{Transformation Tool support for Debugging}
+
+For validation, specialized debuggers tend to offer features for visualizing
+(input, intermediate and output) models, ideally in the syntax of
+the corresponding input or output language. Breakpoints can typically
+be set at the rule level but more fine-grained control can be provided
+too. Solution submitters are encouraged to document at which level
+their transformation tool supports breakpoint definition. Also, they
+are encouraged to document any features they may have employed for
+turning a generic model/graph/object debugger into a Petri-Net and/or
+statechart-specific debugger.
+
+
+\subsubsection{Transformation Tool support for Refactoring}
+
+Since transformation definitions have to evolve, automated restructuring
+(refactoring) operations are very relevant but very little transformation
+tools provide them at the time of writing. This may hinder their adoption
+compared to general purpose programming languages. Therefore, solution
+submitters are also encouraged to document any support their tool
+suite offers for the systematic restructuring of transformation definitions.
+
+
+\section{Table for Comparing Solutions}
+
+In order to facilitate the comparison of all submitted results, we
+encourage solution submitters to document their solution in terms
+of Table~\ref{tab:Table-for-Results}. A solution name should distinguish
+a solution from competing solutions that are based on the same languages
+or tools (if any). The column ``Performance Optimizations'' should
+clarify techniques that were employed for optimizing performance:
+\emph{N} indicates that no optimizations were used, \emph{M} indicates
+that an optimization algorithm was implemented by hand and\emph{ E}
+indicates that declarative (engine-provided) optimizations were employed.
+The table also provides columns for entering the results of the performance
+tests, as measured within a SHARE VM. The SHARE URL should be provided
+as a bibtex citation to minimize the size of the table. The column
+``Understandability'' will be based upon the results of the peer reviews,
+in a qualitative scale\emph{ (very poor, poor, neutral, good, excellent)}.
+Finally the table includes columns for concisely describing the results
+for bonus criteria. For 5.2.1, \emph{C} stands for some kind of automatic
+\emph{confluence} analysis, \emph{T} stands for some kind of automatic
+\emph{termination} analysis while \emph{N} stands for \emph{no} automatic
+verification support. The specific type of verification support should
+be elaborated in free text.
+
+\begin{table}
+\begin{sideways}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline 
+{\tiny Solution } & {\tiny Language} & {\tiny Language } & {\tiny Language } & {\tiny Performance } & {\tiny sp200} & {\tiny sp1000} & {\tiny sp5000} & {\tiny sp10000} & {\tiny sp40000} & {\tiny sp200000} & {\tiny SHARE URL} & {\tiny Understandability} & \begin{sideways}
+{\tiny Bonus 5.2.1}
+\end{sideways} & \begin{sideways}
+{\tiny Bonus 5.2.2}
+\end{sideways} & \begin{sideways}
+{\tiny Bonus 5.2.2}
+\end{sideways} & \begin{sideways}
+{\tiny Bonus 5.2.3}
+\end{sideways} & \begin{sideways}
+{\tiny Bonus 5.2.4}
+\end{sideways} & \begin{sideways}
+{\tiny Bonus 5.2.5}
+\end{sideways} & \begin{sideways}
+{\tiny Bonus 5.2.6}
+\end{sideways}\tabularnewline
+{\tiny Name} & {\tiny{} for Initialization } & {\tiny for Reduction } & {\tiny for Orchestration} & {\tiny Optimizations} &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
+\hline 
+\hline 
+ &  &  &  & {\tiny N / M / E } & {\tiny ... ms} & {\tiny ... ms} & {\tiny ... ms} & {\tiny ... ms} & {\tiny ... ms} & {\tiny ... ms} &  & {\tiny -2 .. +1} & {\tiny C/T/N } & {\tiny Y/N} & {\tiny Y/N} & {\tiny Y/N} & {\tiny Y/N} & {\tiny Y/N} & {\tiny Y/N}\tabularnewline
+ &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
+\hline 
+\end{tabular}
+\end{sideways}
+
+\caption{\label{tab:Table-for-Results}Table for concisely documenting a solution.}
+
+
+\end{table}
+
 
 \vspace{5mm}
  \textbf{Acknowledgements}: The authors thank Prof. Juan de Lara for

@@ -92,19 +92,16 @@ maketitle
 \end_layout
 
 \begin_layout Standard
-TODO: 
-\end_layout
-
-\begin_layout Itemize
-Abstract 
-\end_layout
-
-\begin_layout Itemize
-Mention performance for Epsilon (can be brief)
-\end_layout
-
-\begin_layout Itemize
-Create ZIP attachment with testsuite models
+This paper describes a case study for the sixth Transformation Tool Contest.
+ The case is based on a mapping from Petri-Nets to statecharts (i.e., from
+ flat process models to hierarchical ones).
+ The case description separates a simple mapping phase from a phase that
+ involves the step by step destruction Petri-Net elements and the corresponding
+ construction of a hierarchy of statechart elements.
+ Although the focus of this case study is on the comparison of the runtime
+ performance of solutions, we also include correctness tests as well as
+ bonus criteria for evaluating transformation language and tool features.
+ 
 \end_layout
 
 \begin_layout Section
@@ -321,15 +318,21 @@ Van Gorp et al.
  required less specification effort yet delivered superior performance.
  By submitting this case to TTC'13, we aim at analyzing the generalizability
  of that observation.
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+removed: Input and Output Languages
 \end_layout
 
-\begin_layout Subsection
-Input and Output Languages
-\end_layout
-
-\begin_layout Standard
+\begin_layout Plain Layout
 TODO: copy/paste some background about petri-nets and statecharts, also
  cite some papers about safe nets, workflow nets.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -2892,7 +2895,7 @@ Since transformation definitions have to evolve, automated restructuring
 \end_layout
 
 \begin_layout Section
-Format for Presenting Evaluation Results
+Table for Comparing Solutions
 \end_layout
 
 \begin_layout Standard
@@ -2910,7 +2913,7 @@ reference "tab:Table-for-Results"
 
 .
  A solution name should distinguish a solution from competing solutions
- (if any) that are based on the same languages or tools.
+ that are based on the same languages or tools (if any).
  The column ``Performance Optimizations'' should clarify techniques that
  were employed for optimizing performance: 
 \emph on
