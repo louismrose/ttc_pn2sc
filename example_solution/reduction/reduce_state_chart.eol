@@ -4,7 +4,7 @@ import "and.eol";
 
 var current_processable_transitions = processable_transitions();
 
-while (current_processable_transitions.notEmpty()) {
+while (current_processable_transitions.notEmpty() and Place.all.size > 1) {
 	var reduced_a_transition_this_iteration = false;
 	var reduction_result = null;
 	
