@@ -546,9 +546,11 @@ time increases significantly too. For models of some hundreds of thousands
 of elements, the engine-provided GrGen optimizations reach a speedup
 factor of almost two.
 
-We encourage case submiters to demonstrate various strategies to performance
+Note that our performance tuning and testing of the Epsilon solution described earlier in this paper is not yet complete. Our early results indicate that the Epsilon solution is one or two orders of magnitude slower than the Java solution, which we attribute to a lack of performance tuning, and the interpretative nature of EMF and the Epsilon Object Language.
+
+We encourage case submitters to demonstrate various strategies to performance
 tuning but point out that for the GrGen.NET solution, the transformation
-definition (i.e., the rule specficiation) was not even optimized for
+definition (i.e., the rule specification) was not even optimized for
 performance. In general, especially solutions that deliver good performance
 without negatively affecting the specification style will be considered
 of high quality.
