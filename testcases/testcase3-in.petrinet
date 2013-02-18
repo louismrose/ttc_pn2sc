@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pnet:Net xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:pnet="http://uam.es/PetriNets">
+  <places name="patient arrived" postt="//@transitions.0 //@transitions.1"/>
+  <places name="patient registered in HIS" postt="//@transitions.2 //@transitions.3 //@transitions.7" pret="//@transitions.0 //@transitions.1"/>
+  <places name="patient walking to dermatology" postt="//@transitions.5" pret="//@transitions.3"/>
+  <places name="photographs ordered" postt="//@transitions.4" pret="//@transitions.3 //@transitions.2"/>
+  <places name="biopsy ordered" postt="//@transitions.9" pret="//@transitions.2 //@transitions.3 //@transitions.7"/>
+  <places name="patient in hall" postt="//@transitions.4" pret="//@transitions.2"/>
+  <places name="take pictures" postt="//@transitions.8" pret="//@transitions.6"/>
+  <places name="waiting for photographer" postt="//@transitions.6" pret="//@transitions.5 //@transitions.4"/>
+  <places name="waiting for dermatologist" postt="//@transitions.9" pret="//@transitions.7 //@transitions.8"/>
+  <places name="dermatologist session" pret="//@transitions.9"/>
+  <transitions name="eID signin" prep="//@places.0" postp="//@places.1"/>
+  <transitions name="secretary signin" prep="//@places.0" postp="//@places.1"/>
+  <transitions name="needs pics, cannot walk" prep="//@places.1" postp="//@places.4 //@places.5 //@places.3"/>
+  <transitions name="needs pics, can walk" prep="//@places.1" postp="//@places.2 //@places.3 //@places.4"/>
+  <transitions name="nurse picks up patient" prep="//@places.3 //@places.5" postp="//@places.7"/>
+  <transitions name="patient is sent to photographer" prep="//@places.2" postp="//@places.7"/>
+  <transitions name="begin photography session" prep="//@places.7" postp="//@places.6"/>
+  <transitions name="patient has high quality pics already" prep="//@places.1" postp="//@places.8 //@places.4"/>
+  <transitions name="end photography session" prep="//@places.6" postp="//@places.8"/>
+  <transitions name="dermatologist calls in patient" prep="//@places.8 //@places.4" postp="//@places.9"/>
+</pnet:Net>

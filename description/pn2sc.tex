@@ -28,7 +28,7 @@
 
 \title{The Petri-Nets to Statecharts Transformation Case}
 
-\author{Pieter Van Gorp \institute{Eindhoven University of Technology, PO Box 513, 5600 MB Eindhoven, The Netherlands.} \email{p.m.e.v.gorp@tue.nl} \and Louis M. Rose \institute{Department of Computer Science, University of York, UK.} \email{louis.rose@york.ac.uk}}
+\author{Pieter Van Gorp \institute{School of Industrial Engineering, Eindhoven University of Technology, The Netherlands.} \email{p.m.e.v.gorp@tue.nl} \and Louis M. Rose \institute{Department of Computer Science, University of York, UK.} \email{louis.rose@york.ac.uk}}
 
 \makeatother
 
@@ -252,9 +252,8 @@ Applying the AND rule removes from the Petri-Net all but one of the
 
 \paragraph{Example Implementations.}
 
-The EOL implementation of the AND rule can be found online\footnote{See \url{https://github.com/louismrose/ttc_pn2sc/blob/master/example_solution/reduction/and.eol}}.
-(Note that the AND rule can be applied in ``both directions''
-on line 2).
+An EOL implementation of the AND rule can be found online\footnote{See \url{https://github.com/louismrose/ttc_pn2sc/blob/master/example_solution/reduction/and.eol}}.
+That EOL solution applies to the cases $\left|t.prep\right|>1$ and $\left|t.postp\right|>1$ without requiring code duplication.  A GrGen.NET implementation based on two separate variants of the AND rule can also be found online\footnote{See \url{https://github.com/pvgorp/TTC13-PN2SC-GrGen/blob/master/ttc13-version/PNtoHSC.grg} from line 109 to line 149.}.
 
 
 \subsubsection{OR rules}
@@ -289,9 +288,9 @@ $p$ such that $p.pret=(q.pret\cup r.pret)$ and $p.postt=(q.postt\cup r.postt)$.
 
 \paragraph{Example Implementations.}
 
-The EOL implementation of the OR rule can be found online\footnote{See \url{https://github.com/louismrose/ttc_pn2sc/blob/master/example_solution/reduction/or.eol}}.
-(Note that this implementation re-uses $q$ to form $p$,
-rather than instantiate a new \texttt{Place} or \texttt{OR} state).
+An EOL implementation of the OR rule can be found online\footnote{See \url{https://github.com/louismrose/ttc_pn2sc/blob/master/example_solution/reduction/or.eol}}.
+This implementation re-uses $q$ to form $p$,
+rather than instantiate a new \texttt{Place} or \texttt{OR} state).  A GrGen.NET implementation can also be found online\footnote{See \url{https://github.com/pvgorp/TTC13-PN2SC-GrGen/blob/master/ttc13-version/PNtoHSC.grg} from line 154 to line 189.}.
 
 \subsection{Termination}
 
@@ -345,7 +344,9 @@ The second to fifth snapshots are the result of applying in sequence
 once the AND rule and three times the OR rule. From the figure it
 cannot be determined which variant of the AND rule has been applied
 in the first step since they would both lead to the second snapshot
-in Figure~\ref{fig:Visualization-ANDandOR} The bottom of the figure
+in Figure~\ref{fig:Visualization-ANDandOR}. The step from the second to the third snapshot (i.e., the first application of the OR rule) looks complex at the statechart side (i.e., at the right side of the figure) since there are multiple arcs arriving at the transition that is reduced.  However, it is straightfoward at the Petri-Net side (i.e., at the left side) and that is the side at which the reduction rules are matching against input elements.  The step from the fourth to the fifth snapshot does require some explanation even at the Petri-Net side: the fifth Petri-Net snapshot contains a loop, which may seem remarkable since there are no loops in the input Petri-Net.  Still, the snapshot is the result of correctly applying the OR rule to those two places in the Petri-Net that contain respectively two outgoing arcs and two incoming arcs.  Those two places are merged into one place, which has as set of pre- and post-arcs the respective unions of the sets of pre- and post-arcs of those two places.
+
+The bottom of the figure
 shows a final application of the OR rule. Since the final snapshot
 contains exactly one input place, the output statechart can be considered
 valid. The details of embedding the final structure in a StateChart
@@ -358,10 +359,9 @@ In this section, we present some testcases that should be used both
 for some basic correctness verification as well as for performance
 testing. The complete testsuite is available in an online repository%
 \footnote{See \url{https://github.com/louismrose/ttc_pn2sc/}%
-}. A GrGen.NET solution is available in an additional repository
-\footnote{See \url{https://github.com/pvgorp/TTC13-PN2SC-GrGen}}.
+}. %A GrGen.NET solution is available in an additional repository \footnote{See \url{https://github.com/pvgorp/TTC13-PN2SC-GrGen}}.
 Moreover, we provide online access to additional test materials,
-three existing solutions to the case (a Java solution, a GrGen.NET
+all three existing solutions to the case (a Java solution, a GrGen.NET
 solution and an Epsilon solution%
 \footnote{See \url{http://is.ieis.tue.nl/staff/pvgorp/share/?page=LookupImage&bNameSearch=pn2sc+benchmark}.%
 }) and GMF-based editors with automatic layouting features. We will
@@ -449,9 +449,8 @@ the transformation should terminate in the aforementioned failure
 state since the input model is not part of the class of petri-nets
 for which the reduction rules have been designed.
 
-Figure~\ref{fig:Testcase-3-pn} shows the input Petri-Net for Testcase
-3 while Figure~\ref{fig:Testcase-3-inoutFail} shows a possible visualization
-of the failed execution. The top of the figure shows the statechart
+Figure~\ref{fig:Testcase-3-inoutFail} shows the input Petri-Net for Testcase
+3 as well as a possible visualization of the failed execution. The top of the figure shows the statechart
 model that was generated so far. Again, OR states are represented
 as white boxes. There are no AND states in the model, but a gray box
 is shown nonethless to make the white boxes better visible in print.
