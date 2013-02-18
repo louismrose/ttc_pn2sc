@@ -475,13 +475,13 @@ For performance testing, we enclose an EMF representations of the
 key models that were used to compare the Java and GrGen.NET based
 solutions of the aforementioned paper by Van Gorp et al.~\cite{VanGorp2010MoDELS}.
 The models are based on a large Petri-Net that can be transformed
-successfully by the reduction rules. That Petri-Net has been cloned
+successfully by the reduction rules. That Petri-Net has been cloned and merged
 multiple times to create models of up to 300 thousand elements. All
 results from~\cite{VanGorp2010MoDELS} can be reproduced via an online
 virtual machine in SHARE~\cite{vangorp10PNtoHSCiiii}. In general,
 the performance of both solutions scales linearly for models of normal
 size (requiring always less than a second.) For models with thousands
-of elements, the GrGen.NET solution exhibits an $\bigcirc(x^{2})$
+of elements, the GrGen.NET solution exhibits $\bigcirc(x^{2})$
 time complexity.
 
 Figure~\ref{fig:perf} shows the performance results from a benchmark~\cite{VanGorp2010MoDELS}.
