@@ -123,6 +123,10 @@ observation.
 
 \label{sec:TheTransfo}This section details the Petri-Net to statechart
 transformation algorithm, originally described by Eshuis~\cite{eshuis05pn2scTechreport}.
+We summarise the key details of the transformation below, and strongly
+encourage solution developers to refer to \cite{eshuis05pn2scTechreport} for
+a more comprehensive discussion of the transformation and the rationale behind
+the transformation rules. 
 The transformation described below is \emph{input-destructive} (elements
 of the Petri-Net model are removed as the transformation proceeds),
 and uses the metamodels shown in figure~\ref{fig:mms}. Variants
@@ -220,8 +224,8 @@ these variants in one rule.
 
 Figure~\ref{fig:Visual-documentation-for-rules}.a illustrates when
 the AND rule for the situation $\left|t.prep\right|>1$ would be applicable:
-$q_{1}$ to $q_{n}$ all have $\{t$\} as the set of outgoing transitions
-while they share $\{t_{1},t_{2}\}$ as the set of incoming transitions.
+$q_{1}$ to $q_{n}$ all have $\{t,t_{1},...\}$ as the set of outgoing transition,
+and they share $\{t_{2},...\}$ as the set of incoming transitions.
 $q_{n}$ should not have an outgoing arc to a transition for which
 there is no corresponding arc between $q_{1}$ and that transition.
 Conversely, $q_{1}$ should not have an incoming arc from a transition
@@ -246,18 +250,11 @@ Applying the AND rule removes from the Petri-Net all but one of the
 \texttt{Places} in the set $t.prep$ ($t.postp$).
 
 
-\paragraph{EOL Implementation.}
+\paragraph{Example Implementations.}
 
-Figure~\ref{fig:eol-merge-and} shows an implementation of the AND
-rule in EOL. Note that the AND rule can be applied in ``both directions''
-on line 2.
-
-\begin{figure}
-{\tiny \input{eolAND.tex}}{\tiny \par}
-
-\caption{\label{fig:eol-merge-and}EOL code for performing AND merges (Figure~\ref{fig:Visual-documentation-for-rules}a).}
-\end{figure}
-
+The EOL implementation of the AND rule can be found online\footnote{See \url{https://github.com/louismrose/ttc_pn2sc/blob/master/example_solution/reduction/and.eol}}.
+(Note that the AND rule can be applied in ``both directions''
+on line 2).
 
 
 \subsubsection{OR rules}
@@ -290,18 +287,11 @@ $t$ and the \texttt{Places} $q$ and $r$; and adds a new \texttt{Place}
 $p$ such that $p.pret=(q.pret\cup r.pret)$ and $p.postt=(q.postt\cup r.postt)$.
 
 
-\paragraph{EOL Implementation.}
+\paragraph{Example Implementations.}
 
-Figure~\ref{fig:eol-merge-or} shows an implementation of the OR
-rule in EOL. Note that this implementation re-uses $q$ to form $p$,
-rather than instantiate a new \texttt{Place} or \texttt{OR} state.
-
-\begin{figure}
-{\tiny \input{eolOR.tex}}{\tiny \par}
-
-\caption{\label{fig:eol-merge-or}EOL code for performing OR merges (Figure~\ref{fig:Visual-documentation-for-rules}b).}
-\end{figure}
-
+The EOL implementation of the OR rule can be found online\footnote{See \url{https://github.com/louismrose/ttc_pn2sc/blob/master/example_solution/reduction/or.eol}}.
+(Note that this implementation re-uses $q$ to form $p$,
+rather than instantiate a new \texttt{Place} or \texttt{OR} state).
 
 \subsection{Termination}
 
@@ -350,7 +340,7 @@ of the AND and OR reduction rules.}
 \end{figure}
 
 
-The figure shows downwards subsequent applications of reduction rules.
+The figure shows subsequent applications of reduction rules.
 The second to fifth snapshots are the result of applying in sequence
 once the AND rule and three times the OR rule. From the figure it
 cannot be determined which variant of the AND rule has been applied
@@ -368,7 +358,9 @@ In this section, we present some testcases that should be used both
 for some basic correctness verification as well as for performance
 testing. The complete testsuite is available in an online repository%
 \footnote{See \url{https://github.com/louismrose/ttc_pn2sc/}%
-}. Moreover, we provide online access to additional test materials,
+}. A GrGen.NET solution is available in an additional repository
+\footnote{See \url{https://github.com/pvgorp/TTC13-PN2SC-GrGen}}.
+Moreover, we provide online access to additional test materials,
 three existing solutions to the case (a Java solution, a GrGen.NET
 solution and an Epsilon solution%
 \footnote{See \url{http://is.ieis.tue.nl/staff/pvgorp/share/?page=LookupImage&bNameSearch=pn2sc+benchmark}.%
@@ -392,11 +384,6 @@ of the concrete Petri-Net and statechart syntax can be adapted. In
 the following, AND states are represented as rectangles with solid
 lines while OR states are represented as rectangles with dashed lines.
 
-Listings~\ref{testcase1inXMI} and~\ref{testcase1outXMI} show the
-XMI representations of the input and expected output model for this
-testcase. Listing~\ref{testcase1outXMI-2} shows the XMI representation
-of the Petri-Net after application of the transformation.
-
 \begin{figure}
 \begin{centering}
 \includegraphics[width=0.6\linewidth]{images/paper-example-pn}
@@ -419,13 +406,6 @@ a GMF-based Statechart editor.}
 \end{figure}
 
 
-{\tiny \lstinputlisting[basicstyle={\ttfamily},breaklines=true,caption={XMI representation of the Petri-Net input model},captionpos=b,frame=tb,label={testcase1inXMI},language=xml]{emf/testcase1-in.petrinet}}{\tiny \par}
-
-{\tiny \lstinputlisting[basicstyle={\ttfamily},breaklines=true,caption={XMI representation of the output statechart model},captionpos=b,frame=tb,label={testcase1outXMI},language=xml]{emf/testcase1-out.statechart}}{\tiny \par}
-
-{\tiny \lstinputlisting[basicstyle={\ttfamily},breaklines=true,caption={XMI representation of the Petri-Net input model at transformatoin termintation time},captionpos=b,frame=tb,label={testcase1outXMI-2},language=xml]{emf/testcase1-out.petrinet}}{\tiny \par}
-
-
 \subsection{Testcase 2: Insurance Claim Example}
 
 This testcase is based on an insurance claim example from a paper
@@ -438,9 +418,7 @@ TTC'13 case but we mention them here for clarifying the bigger picture.
 
 Figure~\ref{fig:Testcase-2-pn} shows the input Petri-Net for Testcase
 2 while Figure~\ref{fig:Testcase-2-out} shows the expected output.
-Listings~\ref{testcase2inXMI} and~\ref{testcase2outXMI} show the
-XMI representations of the input and expected output model for this
-testcase. Similar to Testcase 1, the input Petri-Net should be completely
+Similar to Testcase 1, the input Petri-Net should be completely
 reduced to one place upon transformation termination.
 
 \begin{figure}
@@ -463,11 +441,6 @@ a GMF-based Statechart editor.}
 \end{figure}
 
 
-{\tiny \lstinputlisting[basicstyle={\ttfamily},breaklines=true,caption={XMI representation of the Petri-Net input model for Testcase 2},captionpos=b,frame=tb,label={testcase2inXMI},language=xml]{emf/testcase2-in.petrinet}}{\tiny \par}
-
-{\tiny \lstinputlisting[basicstyle={\ttfamily},breaklines=true,caption={XMI representation of the output statechart model for Testcase 2},captionpos=b,frame=tb,label={testcase2outXMI},language=xml]{emf/testcase2-out.statechart}}{\tiny \par}
-
-
 \subsection{Testcase 3: Patient Logistics Example}
 
 This testcase is inspired by the way patients can be routed throughout
@@ -487,20 +460,6 @@ The two places (ovals) without labels have been produced by successive
 applications of the OR reduction rule. The corresponding OR states
 can be identified at the left and in the middle of the statechart.
 
-Listing~\ref{testcase3inXMI} shows the XMI representation of the
-input for this testcase. Since the output is not a valid statechart
-model, no XMI is provided for the expected output.
-
-\begin{figure}
-\begin{centering}
-\includegraphics[width=1\linewidth]{images/skincare-in}
-\par\end{centering}
-
-\caption{\label{fig:Testcase-3-pn}Testcase 3 input, diagram exported from
-a GMF-based Petri-Net editor.}
-\end{figure}
-
-
 \begin{figure}
 \begin{centering}
 \includegraphics[width=1\linewidth]{images/Testcase3-inout}
@@ -509,9 +468,6 @@ a GMF-based Petri-Net editor.}
 \caption{\label{fig:Testcase-3-inoutFail}Testcase 3 output, diagram exported
 from the GrGen.NET graph visualizer.}
 \end{figure}
-
-
-{\tiny \lstinputlisting[basicstyle={\ttfamily},breaklines=true,caption={XMI representation of the Petri-Net input model for Testcase 3},captionpos=b,frame=tb,label={testcase3inXMI},language=xml]{emf/testcase3-in.petrinet}}{\tiny \par}
 
 
 \subsection{Performance Testcases}
@@ -529,7 +485,7 @@ size (requiring always less than a second.) For models with thousands
 of elements, the GrGen.NET solution exhibits an $\bigcirc(x^{2})$
 time complexity.
 
-Figure~\ref{fig:perf} shows the performance results from as a benchmark~\cite{VanGorp2010MoDELS}.)
+Figure~\ref{fig:perf} shows the performance results from a benchmark~\cite{VanGorp2010MoDELS}.
 The figure shows that for GrGen.NET, two curves are shown. Both curves
 are based on just one transformation specification. Different results
 were obtained by changing small engine settings: for one version,
@@ -554,11 +510,21 @@ performance. In general, especially solutions that deliver good performance
 without negatively affecting the specification style will be considered
 of high quality.
 
+Measurements taken for the purposes of comparing performance
+with other solutions must include two intervals: time taken to load / import
+models and time take to execute the transformation on a model once it has been
+loaded and imported. To ensure an equitable comparison, measurements must be taken
+ on a SHARE virtual machine image.
+
 \begin{figure}
 \begin{centering}
-\begin{tabular}{c|c|c}
-\includegraphics[width=0.31\linewidth]{images/scalab-small-models} & \includegraphics[width=0.31\linewidth]{images/scalab-medium-models} & \includegraphics[width=0.31\linewidth]{images/scalab-large-models}\tabularnewline
-\multicolumn{1}{c}{(a)} & \multicolumn{1}{c}{(b)} & (c)\tabularnewline
+\begin{tabular}{c}
+  \includegraphics[width=0.62\linewidth]{images/scalab-small-models} \tabularnewline
+  \multicolumn{1}{c}{(a)}
+\end{tabular}
+\begin{tabular}{c|c}
+ \includegraphics[width=0.35\linewidth]{images/scalab-medium-models} & \includegraphics[width=0.35\linewidth]{images/scalab-large-models}\tabularnewline
+\multicolumn{1}{c}{(b)} & (c)\tabularnewline
 \end{tabular}
 \par\end{centering}
 
@@ -665,7 +631,30 @@ creating/updating/deleting output model elements when performing updates
 on a previously transformed input model). To the best of our knowledge,
 most graph and transformation languages do not yet offer built-in
 support for this so experts are encouraged to show their unique features
-for this use case.
+for this use case. To facilitate comparison between solutions, we encourage 
+solution developers to address the following change propagation scenarios.
+However, there may be additional change propagation scenarios that are well-suited 
+to a particular tool and solution developers may also describe these scenarios
+in addition or instead of the suggestions below.
+
+\begin{itemize}
+  \item Adding a place and a transition in the input Petri-Net should result
+        in a corresponding state and hyper-edge in the output statechart. The
+        arcs should also be updated accordingly. All other elements should remain
+        unchanged. No new AND or OR states should be created.
+  \item Updating the name of a place or transition that was previously transformed
+        should only result in the update of the corresponding statechart element. 
+        Furthermore, removing a place (transition) followed by adding a new place
+        (transition) should not be misinterpreted as a renaming operation when 
+        propagating changes.
+  \item Removing a place and transition from a sequence in the input Petri-Net should
+        result in the removal of the corresponding state and hyper-edge in the output
+        statechart. The arcs should also be updated accordingly. All other elements 
+        should remain unchanged.
+\end{itemize}
+
+Test cases can be provided on request for change propagation scenarios (including
+but not limited to those listed above).
 
 
 \subsubsection{Transformation Language support for Reversing the Transformation}
