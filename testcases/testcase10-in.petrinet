@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pnet:Net xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pnet="http://uam.es/PetriNets" xsi:schemaLocation="http://uam.es/PetriNets ../metamodels/PetriNets.ecore" xmi:id="$21">
+<places xmi:id="$8" name="p10" postt="" pret=" $D"></places>
+<places xmi:id="$7" name="p9" postt=" $D" pret=" $C"></places>
+<places xmi:id="$6" name="p8" postt=" $D" pret=" $B"></places>
+<places xmi:id="$5" name="p6" postt=" $C" pret=" $E"></places>
+<places xmi:id="$4" name="p5" postt=" $B $C" pret=" $A $E"></places>
+<places xmi:id="$3" name="p4" postt=" $B" pret=" $A"></places>
+<places xmi:id="$2" name="p3" postt=" $E" pret=" $9"></places>
+<places xmi:id="$1" name="p2" postt=" $A" pret=" $9"></places>
+<places xmi:id="$0" name="p1" postt=" $9" pret=""></places>
+<transitions xmi:id="$E" name="t3" postp=" $5 $4" prep=" $2"></transitions>
+<transitions xmi:id="$D" name="t6" postp=" $8" prep=" $7 $6"></transitions>
+<transitions xmi:id="$C" name="t5" postp=" $7" prep=" $4 $5"></transitions>
+<transitions xmi:id="$B" name="t4" postp=" $6" prep=" $4 $3"></transitions>
+<transitions xmi:id="$A" name="t2" postp=" $3 $4" prep=" $1"></transitions>
+<transitions xmi:id="$9" name="t1" postp=" $1 $2" prep=" $0"></transitions>
+</pnet:Net>

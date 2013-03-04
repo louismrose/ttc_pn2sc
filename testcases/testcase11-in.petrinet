@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pnet:Net xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pnet="http://uam.es/PetriNets" xsi:schemaLocation="http://uam.es/PetriNets ../metamodels/PetriNets.ecore" xmi:id="$18">
+<places xmi:id="$5" name="p7" postt=" $A" pret=" $9"></places>
+<places xmi:id="$4" name="p6" postt=" $9" pret=" $7 $A"></places>
+<places xmi:id="$3" name="p4" postt=" $7" pret=" $6"></places>
+<places xmi:id="$2" name="p3" postt=" $9" pret=" $8 $A"></places>
+<places xmi:id="$1" name="p2" postt=" $8" pret=" $6"></places>
+<places xmi:id="$0" name="p1" postt=" $6" pret=""></places>
+<transitions xmi:id="$A" name="t7" postp=" $2 $4" prep=" $5"></transitions>
+<transitions xmi:id="$9" name="t5" postp=" $5" prep=" $2 $4"></transitions>
+<transitions xmi:id="$8" name="t4" postp=" $2" prep=" $1"></transitions>
+<transitions xmi:id="$7" name="t3" postp=" $4" prep=" $3"></transitions>
+<transitions xmi:id="$6" name="t1" postp=" $1 $3" prep=" $0"></transitions>
+</pnet:Net>
