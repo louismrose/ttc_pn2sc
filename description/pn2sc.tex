@@ -20,7 +20,7 @@
 
 \providecommand{\event}{TTC 2013} 
 
-\def\titlerunning{Petri Nets to Statecharts}
+\def\titlerunning{Petri-Nets to Statecharts}
 \def\authorrunning{P. {Van Gorp} and L.M. Rose}
 
 \usepackage{url}\usepackage{color}\usepackage{listings}
@@ -156,7 +156,7 @@ the PN2SC transformation is started:
 \item there are no \texttt{Statechart} nor \texttt{State} instances.
 \end{itemize}
 
-\subsection{Initialisation}
+\subsection{Initialization}
 
 The first step in the PN2SC transformation involves creating an initial
 structure for the statechart model. In particular, the following statechart
@@ -175,21 +175,21 @@ arcs.
 
 \paragraph{Equivalence.}
 
-Initialisation should also provide a mechanism for identifying the
+Initialization should also provide a mechanism for identifying the
 \texttt{OR} node created for a particular \texttt{Place} and the \texttt{HyperEdge}
 created for a particular \texttt{Transition}. The precise mechanism
 can vary over implementations. One approach is to use a name-based
 identification (e.g., assign all \texttt{Places} a uniquely identifying
 name and copy each \texttt{Place's} name to its \texttt{OR} node during
-initialisation.) Another approach is to create traceability links
+initialization.) Another approach is to create traceability links
 between corresponding source and target elements. In the remainder
-of this section we assume that the initialisation of the transformation
+of this section we assume that the initialization of the transformation
 will construct an injective function $equiv:Place\to OR$.
 
 
 \subsection{Reduction rules}
 
-Following initialisation, the transformation continues by applying
+Following initialization, the transformation continues by applying
 one of two types of reduction rules: AND and OR. 
 
 \begin{figure}[tb]
@@ -364,9 +364,9 @@ Moreover, we provide online access to additional test materials,
 all three existing solutions to the case (a Java solution, a GrGen.NET
 solution and an Epsilon solution%
 \footnote{See \url{http://is.ieis.tue.nl/staff/pvgorp/share/?page=LookupImage&bNameSearch=pn2sc+benchmark}.%
-}) and GMF-based editors with automatic layouting features. We will
-also participate in online discussions related to these materials
-and may submit also improved versions of the existing solutions.
+}) and GMF-based editors with automatic layouting features. We have
+also participated in online discussions related to these materials\footnote{See \url{http://goo.gl/EjyCwo}}.  In the context of these discussions, we have 
+%and may submit also improved versions of the existing solutions.
 
 
 \subsection{Testcase 1: Artificial Example}
@@ -446,7 +446,7 @@ a GMF-based Statechart editor.}
 This testcase is inspired by the way patients can be routed throughout
 a hospital in the context of dermatology care. For this testcase,
 the transformation should terminate in the aforementioned failure
-state since the input model is not part of the class of petri-nets
+state since the input model is not part of the class of Petri-Nets
 for which the reduction rules have been designed.
 
 Figure~\ref{fig:Testcase-3-inoutFail} shows the input Petri-Net for Testcase
@@ -506,7 +506,7 @@ We encourage case submitters to demonstrate various strategies to performance
 tuning but point out that for the GrGen.NET solution, the transformation
 definition (i.e., the rule specification) was not even optimized for
 performance. In general, especially solutions that deliver good performance
-without negatively affecting the specification style will be considered
+without negatively affecting the specification style are considered
 of high quality.
 
 Measurements taken for the purposes of comparing performance
@@ -531,7 +531,9 @@ loaded and imported. To ensure an equitable comparison, measurements must be tak
 GrGen.NET solutions.}
 \end{figure}
 
-
+\subsection{Testcases 4-11: Advanced Control Flows}
+During the solution discussion phase, we observed the need to share additional testcases.  In particular, the testsuite had to be extended with inputs involving more advanced control flow structures.  Three weeks before the solution submission deadline, we have shared 8 additional testcases\footnote{See \url{http://goo.gl/U1ksGQ}}.  % was https://github.com/louismrose/ttc_pn2sc/commit/fe6d8695b2642c69da7bee52eef5734957bf25d0
+The additional testcases involve fabricated Petri-Nets that contain advanced Petri-Net synchronization and loop structures.  Not all additional petri-nets can be reduced successfully.  In summary, input models 1,2, 7, 8 and 11 should be successfully reduced to statecharts while nets 3, 5, 6, 9 and 10 cannot (and should not) be reduced completely.
 
 \section{Evaluation Criteria}
 
@@ -547,9 +549,9 @@ behavior for all testcases.
 
 \subsubsection{Transformation Performance}
 
-Secondly, runtime performance will be evaluated (using the performance
-testcases). An online spreadsheet will be shared via the TTC'13 forum
-for conveniently entering and comparing performance results. Solution
+Secondly, runtime performance should be evaluated (using the performance
+testcases). An online spreadsheet will be %shared via the TTC'13 forum
+provided for conveniently entering and comparing performance results. Solution
 submitters are also encouraged to reflect on the good (or poor) performance
 of their solution, compared to solutions from TTC'13 competitors.
 
